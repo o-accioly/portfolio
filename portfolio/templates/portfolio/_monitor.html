@@ -1,0 +1,38 @@
+{% comment %}
+  The monitor: one 3D body that takes the shape of five devices.
+  Context: current (project view), current_shot (Shot or None), current_device, t.
+{% endcomment %}
+<div class="rig" data-rig data-device="{{ current_device }}" style="view-transition-name: monitor">
+  <div class="dv-floor"></div>
+  <div class="rig-cam">
+    <div class="dv-orbit">
+    <div class="dv-tilt" data-tilt>
+      <div class="dv" data-dv data-device="{{ current_device }}">
+        <div class="dv-lid">
+          <i class="dv-slice"></i><i class="dv-slice"></i><i class="dv-slice"></i><i class="dv-slice"></i><i class="dv-slice"></i><i class="dv-slice"></i><i class="dv-slice"></i><i class="dv-slice"></i>
+          <div class="dv-screen" data-screen>
+            {% if current_shot %}
+            <img class="dv-shot" src="{{ current_shot.full }}" width="{{ current_shot.width }}" height="{{ current_shot.height }}"
+                 alt="{{ current.name }}: {{ current.text.kind }}" fetchpriority="high" decoding="async"
+                 style="--pan: {{ current_shot.pan_css }}; --pan-dur: {{ current_shot.duration_css }}">
+            {% endif %}
+            <div class="dv-states" data-states{% if current_shot %} hidden{% endif %}>
+              <p class="dv-states-title" data-states-title>{{ current.name }}</p>
+              <div class="contents" data-bind="screen-lines">
+                {% for line in current.screen %}
+                <p class="dv-state" style="--n: {{ forloop.counter0 }}"><span class="lamp"></span>{{ line }}</p>
+                {% endfor %}
+              </div>
+              <p class="dv-states-note">{{ t.projects.illustration }}</p>
+            </div>
+          </div>
+          <span class="dv-island"></span>
+        </div>
+        <span class="dv-neck"></span>
+        <span class="dv-foot"></span>
+        <span class="dv-deck"></span>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load console %}
+
+{% block title %}{{ page_title }} · {{ author }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+{# ---------------------------------------------------------------- title #}
+<section class="band pt-8! pb-10!" aria-labelledby="project-title">
+  <div class="band-inner">
+    <a class="nav-link legend gap-2" href="{% url 'portfolio:home' %}#projetos">{% icon "arrow-left" 14 %}{{ t.detail.back }}</a>
+
+    <div class="mt-6 grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-end">
+      <div>
+        <h1 class="tape text-[clamp(3rem,1.6rem+6vw,6rem)]" id="project-title">{{ project.name }}</h1>
+        <p class="display-3 mt-7 max-w-[34ch] text-[clamp(1.25rem,1rem+1vw,1.75rem)]!">{{ project.text.tagline }}</p>
+      </div>
+      <div class="flex flex-col items-start gap-4 lg:items-end">
+        <p class="legend leading-relaxed text-ink-soft lg:text-right">{{ project.text.kind }}<br>{{ project.text.role }}{% if project.since %} · {{ project.since }}{% endif %}</p>
+        <div class="flex flex-wrap gap-3">
+          {% if project.url %}<a class="key key-primary" href="{{ project.url }}" rel="noopener">{{ t.projects.live }}{% icon "arrow-up-right" 16 %}</a>{% endif %}
+          {% if project.repo %}<a class="key key-primary" href="{{ project.repo }}" rel="noopener">{% icon "github" 16 %}{{ t.projects.repo }}</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- monitor #}
+<section class="well px-(--gutter) py-8 lg:py-12" data-stage aria-label="{{ t.hero.monitor }}">
+  <div class="band-inner max-w-[76rem]!">
+    {% include "portfolio/_monitor.html" %}
+    {% include "portfolio/_monitor_controls.html" %}
+    <div class="mt-6 grid gap-x-12 gap-y-5 md:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] md:items-end">
+      {% include "portfolio/_monitor_select.html" %}
+      <p class="max-w-[58ch] text-sm leading-relaxed text-well-soft">{% if project.demo_screens %}{{ t.detail.demo_screens }}{% elif not current_shot %}{{ t.detail.no_shots }}{% elif not inside %}{{ t.detail.inside_pending }}{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- story and fact sheet #}
+<section class="band">
+  <div class="band-inner grid gap-x-20 gap-y-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+    <div class="grid content-start gap-10">
+      <div>
+        <h2 class="display-3">{{ t.detail.problem }}</h2>
+        <p class="lead mt-3 text-ink-soft">{{ project.text.problem }}</p>
+      </div>
+      <div>
+        <h2 class="display-3">{{ t.detail.built }}</h2>
+        <p class="lead mt-3 text-ink-soft">{{ project.text.built }}</p>
+      </div>
+      <div>
+        <h2 class="display-3">{{ t.detail.runs }}</h2>
+        <p class="lead mt-3 text-ink-soft">{{ project.text.runs }}</p>
+      </div>
+    </div>
+
+    <aside class="content-start">
+      <h2 class="legend">{{ t.detail.facts }}</h2>
+      <dl class="facts mt-3">
+        {% for fact in project.text.facts %}
+        <div>
+          <dt class="legend pt-1 text-ink-soft">{{ fact.0 }}</dt>
+          <dd class="font-medium">{{ fact.1 }}</dd>
+        </div>
+        {% endfor %}
+        {% if project.host %}
+        <div>
+          <dt class="legend pt-1 text-ink-soft">URL</dt>
+          <dd class="font-medium break-words"><a href="{% firstof project.url project.repo %}" rel="noopener">{{ project.host }}</a></dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <h2 class="legend mt-10">{{ t.detail.stack }}</h2>
+      <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
+        {% for skill in stack %}<li class="text-[0.9375rem] font-medium">{{ skill }}</li>{% endfor %}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- rack #}
+<section class="band groove bg-face-up" aria-labelledby="layers-title">
+  <div class="band-inner">
+    <h2 class="display-2" id="layers-title">{{ t.detail.layers }}</h2>
+    <p class="lead mt-4 text-ink-soft">{{ t.detail.layers_lead }}</p>
+
+    <div class="rack mt-10 max-w-[70rem]">
+      <div class="rack-frame">
+        {% for layer in layers %}
+        <details class="rack-unit" name="rack"{% if forloop.first %} open{% endif %}>
+          <summary>
+            <span class="rack-screw" aria-hidden="true"></span>
+            <span class="display-3">{{ layer.label }}</span>
+            <span class="rack-parts">
+              {% for part in layer.parts %}<span class="rack-part"><span class="lamp" aria-hidden="true"></span>{{ part }}</span>{% endfor %}
+            </span>
+            <span class="rack-chevron" aria-hidden="true">{% icon "chevron" 18 %}</span>
+          </summary>
+          <p class="rack-note text-ink-soft">{{ layer.note }}</p>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if inside %}
+{# ---------------------------------------------------------------- inside (hand-picked screens) #}
+<section class="band" aria-labelledby="inside-title">
+  <div class="band-inner">
+    <h2 class="display-2" id="inside-title">{{ t.detail.inside }}</h2>
+    <p class="lead mt-4 text-ink-soft">{{ t.detail.inside_lead }}</p>
+    <div class="inside mt-10">
+      {% for shot in inside %}
+      <figure class="inside-item">
+        <div class="inside-frame">
+          {% if shot.webm or shot.mp4 %}
+          <video poster="{{ shot.src }}" width="{{ shot.width }}" height="{{ shot.height }}" muted loop playsinline preload="none"
+                 aria-label="{{ shot.caption }}" data-inside-video>
+            {% if shot.webm %}<source src="{{ shot.webm }}" type="video/webm">{% endif %}
+            {% if shot.mp4 %}<source src="{{ shot.mp4 }}" type="video/mp4">{% endif %}
+          </video>
+          {% else %}
+          <img src="{{ shot.src }}" width="{{ shot.width }}" height="{{ shot.height }}" alt="{{ shot.caption }}" loading="lazy" decoding="async">
+          {% endif %}
+        </div>
+        {% if shot.caption %}<figcaption class="legend mt-3">{{ shot.caption }}</figcaption>{% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---------------------------------------------------------------- transport #}
+<nav class="well px-(--gutter) py-8" aria-label="{{ t.nav.projects }}">
+  <div class="band-inner flex flex-wrap items-center justify-between gap-4">
+    <a class="key key-well" href="{{ previous.href }}" rel="prev">{% icon "arrow-left" 16 %}<span class="sr-only">{{ t.detail.previous }}:</span>{{ previous.name }}</a>
+    <a class="key key-well" href="{{ next.href }}" rel="next"><span class="sr-only">{{ t.detail.next }}:</span>{{ next.name }}{% icon "arrow-right" 16 %}</a>
+  </div>
+</nav>
+{% endblock %}
+
+{% block scripts %}
+{{ stage_data|json_script:"stage-data" }}
+{% endblock %}

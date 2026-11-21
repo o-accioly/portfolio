@@ -1,0 +1,5 @@
+# Runtime dependencies (the Docker image installs these). Development tools: see pyproject.toml.
+django>=6.1,<6.2
+django-tailwind-cli>=4.9,<5
+gunicorn>=23
+whitenoise>=6.9,<7

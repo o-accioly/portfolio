@@ -1,0 +1,717 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T05:56:23+00:00",
+  "title": "Design System: Sala de Mixagem",
+  "extensions": {
+    "colorMeta": {
+      "face": {
+        "role": "neutral",
+        "displayName": "Painel esmaltado",
+        "canonical": "light-dark(#bfccd4, #0d2a30)",
+        "tonalRamp": [
+          "oklch(15% 0.018 235)",
+          "oklch(26% 0.018 235)",
+          "oklch(38% 0.018 235)",
+          "oklch(50% 0.018 235)",
+          "oklch(62% 0.018 235)",
+          "oklch(74% 0.018 235)",
+          "oklch(85% 0.018 235)",
+          "oklch(95% 0.018 235)"
+        ]
+      },
+      "face-up": {
+        "role": "neutral",
+        "displayName": "Plano levantado",
+        "canonical": "light-dark(#d3dde3, #143840)",
+        "tonalRamp": [
+          "oklch(15% 0.014 234)",
+          "oklch(26% 0.014 234)",
+          "oklch(38% 0.014 234)",
+          "oklch(50% 0.014 234)",
+          "oklch(62% 0.014 234)",
+          "oklch(74% 0.014 234)",
+          "oklch(85% 0.014 234)",
+          "oklch(95% 0.014 234)"
+        ]
+      },
+      "face-down": {
+        "role": "neutral",
+        "displayName": "Rebaixo",
+        "canonical": "light-dark(#a9b9c3, #081d22)",
+        "tonalRamp": [
+          "oklch(15% 0.023 235)",
+          "oklch(26% 0.023 235)",
+          "oklch(38% 0.023 235)",
+          "oklch(50% 0.023 235)",
+          "oklch(62% 0.023 235)",
+          "oklch(74% 0.023 235)",
+          "oklch(85% 0.023 235)",
+          "oklch(95% 0.023 235)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "light-dark(#0e1a22, #ece6d7)",
+        "tonalRamp": [
+          "oklch(15% 0.023 239)",
+          "oklch(26% 0.023 239)",
+          "oklch(38% 0.023 239)",
+          "oklch(50% 0.023 239)",
+          "oklch(62% 0.023 239)",
+          "oklch(74% 0.023 239)",
+          "oklch(85% 0.023 239)",
+          "oklch(95% 0.023 239)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Tinta de apoio",
+        "canonical": "light-dark(#2b3f4c, #a7bcc0)",
+        "tonalRamp": [
+          "oklch(15% 0.034 237)",
+          "oklch(26% 0.034 237)",
+          "oklch(38% 0.034 237)",
+          "oklch(50% 0.034 237)",
+          "oklch(62% 0.034 237)",
+          "oklch(74% 0.034 237)",
+          "oklch(85% 0.034 237)",
+          "oklch(95% 0.034 237)"
+        ]
+      },
+      "groove-a": {
+        "role": "neutral",
+        "displayName": "Sulco, corte",
+        "canonical": "light-dark(rgb(14 26 34 / 0.34), rgb(0 0 0 / 0.7))",
+        "tonalRamp": [
+          "oklch(15% 0.023 239)",
+          "oklch(26% 0.023 239)",
+          "oklch(38% 0.023 239)",
+          "oklch(50% 0.023 239)",
+          "oklch(62% 0.023 239)",
+          "oklch(74% 0.023 239)",
+          "oklch(85% 0.023 239)",
+          "oklch(95% 0.023 239)"
+        ]
+      },
+      "groove-b": {
+        "role": "neutral",
+        "displayName": "Sulco, lábio",
+        "canonical": "light-dark(rgb(255 255 255 / 0.62), rgb(255 255 255 / 0.07))",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(50% 0.000 90)",
+          "oklch(62% 0.000 90)",
+          "oklch(74% 0.000 90)",
+          "oklch(85% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "well": {
+        "role": "neutral",
+        "displayName": "Poço",
+        "canonical": "light-dark(#0b2026, #051316)",
+        "tonalRamp": [
+          "oklch(15% 0.029 219)",
+          "oklch(26% 0.029 219)",
+          "oklch(38% 0.029 219)",
+          "oklch(50% 0.029 219)",
+          "oklch(62% 0.029 219)",
+          "oklch(74% 0.029 219)",
+          "oklch(85% 0.029 219)",
+          "oklch(95% 0.029 219)"
+        ]
+      },
+      "well-up": {
+        "role": "neutral",
+        "displayName": "Poço levantado",
+        "canonical": "light-dark(#143039, #0c2227)",
+        "tonalRamp": [
+          "oklch(15% 0.037 221)",
+          "oklch(26% 0.037 221)",
+          "oklch(38% 0.037 221)",
+          "oklch(50% 0.037 221)",
+          "oklch(62% 0.037 221)",
+          "oklch(74% 0.037 221)",
+          "oklch(85% 0.037 221)",
+          "oklch(95% 0.037 221)"
+        ]
+      },
+      "well-ink": {
+        "role": "neutral",
+        "displayName": "Tinta do poço",
+        "canonical": "#ece6d7",
+        "tonalRamp": [
+          "oklch(15% 0.021 89)",
+          "oklch(26% 0.021 89)",
+          "oklch(38% 0.021 89)",
+          "oklch(50% 0.021 89)",
+          "oklch(62% 0.021 89)",
+          "oklch(74% 0.021 89)",
+          "oklch(85% 0.021 89)",
+          "oklch(95% 0.021 89)"
+        ]
+      },
+      "well-soft": {
+        "role": "neutral",
+        "displayName": "Tinta de apoio do poço",
+        "canonical": "#a3b8bd",
+        "tonalRamp": [
+          "oklch(15% 0.024 214)",
+          "oklch(26% 0.024 214)",
+          "oklch(38% 0.024 214)",
+          "oklch(50% 0.024 214)",
+          "oklch(62% 0.024 214)",
+          "oklch(74% 0.024 214)",
+          "oklch(85% 0.024 214)",
+          "oklch(95% 0.024 214)"
+        ]
+      },
+      "well-groove": {
+        "role": "neutral",
+        "displayName": "Fio do poço",
+        "canonical": "rgb(255 255 255 / 0.1)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(50% 0.000 90)",
+          "oklch(62% 0.000 90)",
+          "oklch(74% 0.000 90)",
+          "oklch(85% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "tape": {
+        "role": "neutral",
+        "displayName": "Fita crepe",
+        "canonical": "light-dark(#f5f1e7, #e6e1d3)",
+        "tonalRamp": [
+          "oklch(15% 0.014 89)",
+          "oklch(26% 0.014 89)",
+          "oklch(38% 0.014 89)",
+          "oklch(50% 0.014 89)",
+          "oklch(62% 0.014 89)",
+          "oklch(74% 0.014 89)",
+          "oklch(85% 0.014 89)",
+          "oklch(95% 0.014 89)"
+        ]
+      },
+      "tape-edge": {
+        "role": "neutral",
+        "displayName": "Borda da fita",
+        "canonical": "light-dark(#e3dccb, #cfc8b6)",
+        "tonalRamp": [
+          "oklch(15% 0.024 88)",
+          "oklch(26% 0.024 88)",
+          "oklch(38% 0.024 88)",
+          "oklch(50% 0.024 88)",
+          "oklch(62% 0.024 88)",
+          "oklch(74% 0.024 88)",
+          "oklch(85% 0.024 88)",
+          "oklch(95% 0.024 88)"
+        ]
+      },
+      "marker": {
+        "role": "neutral",
+        "displayName": "Caneta",
+        "canonical": "#15171a",
+        "tonalRamp": [
+          "oklch(15% 0.007 258)",
+          "oklch(26% 0.007 258)",
+          "oklch(38% 0.007 258)",
+          "oklch(50% 0.007 258)",
+          "oklch(62% 0.007 258)",
+          "oklch(74% 0.007 258)",
+          "oklch(85% 0.007 258)",
+          "oklch(95% 0.007 258)"
+        ]
+      },
+      "cap-red": {
+        "role": "primary",
+        "displayName": "Vermelho de tampa",
+        "canonical": "#cf3a2b",
+        "tonalRamp": [
+          "oklch(15% 0.188 30)",
+          "oklch(26% 0.188 30)",
+          "oklch(38% 0.188 30)",
+          "oklch(50% 0.188 30)",
+          "oklch(62% 0.188 30)",
+          "oklch(74% 0.188 30)",
+          "oklch(85% 0.188 30)",
+          "oklch(95% 0.188 30)"
+        ]
+      },
+      "cap-yellow": {
+        "role": "secondary",
+        "displayName": "Amarelo de sinal",
+        "canonical": "#efb22e",
+        "tonalRamp": [
+          "oklch(15% 0.153 81)",
+          "oklch(26% 0.153 81)",
+          "oklch(38% 0.153 81)",
+          "oklch(50% 0.153 81)",
+          "oklch(62% 0.153 81)",
+          "oklch(74% 0.153 81)",
+          "oklch(85% 0.153 81)",
+          "oklch(95% 0.153 81)"
+        ]
+      },
+      "cap-cream": {
+        "role": "tertiary",
+        "displayName": "Tampa creme (ui)",
+        "canonical": "#f1ede3",
+        "tonalRamp": [
+          "oklch(15% 0.014 89)",
+          "oklch(26% 0.014 89)",
+          "oklch(38% 0.014 89)",
+          "oklch(50% 0.014 89)",
+          "oklch(62% 0.014 89)",
+          "oklch(74% 0.014 89)",
+          "oklch(85% 0.014 89)",
+          "oklch(95% 0.014 89)"
+        ]
+      },
+      "cap-blue": {
+        "role": "tertiary",
+        "displayName": "Tampa azul (ai)",
+        "canonical": "#2f73bd",
+        "tonalRamp": [
+          "oklch(15% 0.134 253)",
+          "oklch(26% 0.134 253)",
+          "oklch(38% 0.134 253)",
+          "oklch(50% 0.134 253)",
+          "oklch(62% 0.134 253)",
+          "oklch(74% 0.134 253)",
+          "oklch(85% 0.134 253)",
+          "oklch(95% 0.134 253)"
+        ]
+      },
+      "cap-green": {
+        "role": "tertiary",
+        "displayName": "Tampa verde (infra)",
+        "canonical": "#2f9e63",
+        "tonalRamp": [
+          "oklch(15% 0.133 156)",
+          "oklch(26% 0.133 156)",
+          "oklch(38% 0.133 156)",
+          "oklch(50% 0.133 156)",
+          "oklch(62% 0.133 156)",
+          "oklch(74% 0.133 156)",
+          "oklch(85% 0.133 156)",
+          "oklch(95% 0.133 156)"
+        ]
+      },
+      "cap-orange": {
+        "role": "tertiary",
+        "displayName": "Tampa laranja (integ)",
+        "canonical": "#e07a2c",
+        "tonalRamp": [
+          "oklch(15% 0.153 53)",
+          "oklch(26% 0.153 53)",
+          "oklch(38% 0.153 53)",
+          "oklch(50% 0.153 53)",
+          "oklch(62% 0.153 53)",
+          "oklch(74% 0.153 53)",
+          "oklch(85% 0.153 53)",
+          "oklch(95% 0.153 53)"
+        ]
+      },
+      "dv-bezel": {
+        "role": "neutral",
+        "displayName": "Moldura de dispositivo",
+        "canonical": "#0a0c0f",
+        "tonalRamp": [
+          "oklch(15% 0.007 258)",
+          "oklch(26% 0.007 258)",
+          "oklch(38% 0.007 258)",
+          "oklch(50% 0.007 258)",
+          "oklch(62% 0.007 258)",
+          "oklch(74% 0.007 258)",
+          "oklch(85% 0.007 258)",
+          "oklch(95% 0.007 258)"
+        ]
+      },
+      "dv-edge": {
+        "role": "neutral",
+        "displayName": "Espessura de dispositivo",
+        "canonical": "#474f58",
+        "tonalRamp": [
+          "oklch(15% 0.018 251)",
+          "oklch(26% 0.018 251)",
+          "oklch(38% 0.018 251)",
+          "oklch(50% 0.018 251)",
+          "oklch(62% 0.018 251)",
+          "oklch(74% 0.018 251)",
+          "oklch(85% 0.018 251)",
+          "oklch(95% 0.018 251)"
+        ]
+      },
+      "dv-back": {
+        "role": "neutral",
+        "displayName": "Costas de dispositivo",
+        "canonical": "#2a3037",
+        "tonalRamp": [
+          "oklch(15% 0.015 252)",
+          "oklch(26% 0.015 252)",
+          "oklch(38% 0.015 252)",
+          "oklch(50% 0.015 252)",
+          "oklch(62% 0.015 252)",
+          "oklch(74% 0.015 252)",
+          "oklch(85% 0.015 252)",
+          "oklch(95% 0.015 252)"
+        ]
+      },
+      "dv-deck": {
+        "role": "neutral",
+        "displayName": "Base de notebook",
+        "canonical": "#3a424b",
+        "tonalRamp": [
+          "oklch(15% 0.019 251)",
+          "oklch(26% 0.019 251)",
+          "oklch(38% 0.019 251)",
+          "oklch(50% 0.019 251)",
+          "oklch(62% 0.019 251)",
+          "oklch(74% 0.019 251)",
+          "oklch(85% 0.019 251)",
+          "oklch(95% 0.019 251)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display-1": {
+        "displayName": "Display 1",
+        "purpose": "A frase do monitor; uma por página, numa linha só no desktop."
+      },
+      "display-2": {
+        "displayName": "Display 2",
+        "purpose": "Título de cada faixa de página e da etapa em cena no patch bay."
+      },
+      "display-3": {
+        "displayName": "Display 3",
+        "purpose": "Nome de trilha, rótulo de unidade de rack, subtítulos da página de projeto."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Parágrafo que acompanha um título; no máximo 62ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido."
+      },
+      "legend": {
+        "displayName": "Legenda",
+        "purpose": "Rótulo serigrafado de painel, controle ou dado; caixa alta estendida."
+      },
+      "key": {
+        "displayName": "Tecla",
+        "purpose": "Texto de tecla; caixa alta estendida."
+      },
+      "hand": {
+        "displayName": "Caneta",
+        "purpose": "Nome de projeto na fita e a palavra da fita da assinatura."
+      }
+    },
+    "shadows": [
+      {
+        "name": "groove",
+        "value": "inset 0 1px 0 var(--groove-b)",
+        "purpose": "Lábio claro do sulco, junto de border-top: 1px solid var(--groove-a). Toda divisão do painel."
+      },
+      {
+        "name": "key-rest",
+        "value": "0 2px 3px -1px var(--groove-a), inset 0 1px 0 var(--groove-b)",
+        "purpose": "Tecla levantada."
+      },
+      {
+        "name": "key-pressed",
+        "value": "inset 0 2px 4px rgb(0 0 0 / 0.28)",
+        "purpose": "Tecla pressionada, com translateY(1px)."
+      },
+      {
+        "name": "key-well",
+        "value": "0 2px 4px -1px rgb(0 0 0 / 0.6), inset 0 1px 0 rgb(255 255 255 / 0.08)",
+        "purpose": "Tecla dentro do poço."
+      },
+      {
+        "name": "tape",
+        "value": "0 1px 2px rgb(0 0 0 / 0.28)",
+        "purpose": "Etiqueta de fita."
+      },
+      {
+        "name": "tape-strip",
+        "value": "0 3px 8px -2px rgb(0 0 0 / 0.45)",
+        "purpose": "Tira de fita que atravessa a mesa."
+      },
+      {
+        "name": "lamp-on",
+        "value": "0 0 6px 1px color-mix(in oklab, var(--cap) 60%, transparent)",
+        "purpose": "Brilho da lâmpada acesa; o único brilho do sistema."
+      },
+      {
+        "name": "lamp-off",
+        "value": "inset 0 0 0 1px color-mix(in oklab, var(--cap) 55%, transparent)",
+        "purpose": "Aro da lâmpada apagada."
+      },
+      {
+        "name": "fader-cap",
+        "value": "0 2px 4px -1px rgb(0 0 0 / 0.5), inset 0 0 0 1px rgb(0 0 0 / 0.3)",
+        "purpose": "Tampa do fader."
+      },
+      {
+        "name": "handset",
+        "value": "0 14px 22px -12px rgb(0 0 0 / 0.55), 0 2px 0 var(--dv-edge)",
+        "purpose": "Aparelho da faixa de projeto."
+      },
+      {
+        "name": "rack-frame",
+        "value": "30px 30px 50px -30px rgb(0 0 0 / 0.5)",
+        "purpose": "Quadro do rack em perspectiva."
+      },
+      {
+        "name": "rack-unit-open",
+        "value": "inset 0 1px 0 var(--groove-b), inset 0 -1px 0 var(--groove-a), 0 16px 22px -8px rgb(0 0 0 / 0.55)",
+        "purpose": "Unidade de rack aberta, avançada 28px."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Resposta: teclas, traço de caneta, troca de formato, entradas."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Percurso: rolagem do print, linha de carregamento, agulha, placa do nome."
+      },
+      {
+        "name": "morph",
+        "value": "900ms",
+        "purpose": "O monitor muda de formato interpolando largura, altura, raio, moldura e inclinação."
+      },
+      {
+        "name": "key-press",
+        "value": "140ms",
+        "purpose": "Curso da tecla."
+      },
+      {
+        "name": "marker-stroke",
+        "value": "420ms",
+        "purpose": "Traço de caneta sob o nome em cena."
+      },
+      {
+        "name": "fader-travel",
+        "value": "520ms",
+        "purpose": "A tampa do fader corre o trilho quando a faixa recebe cursor ou foco."
+      },
+      {
+        "name": "patch-signal",
+        "value": "620ms",
+        "purpose": "O sinal corre o cabo até a etapa escolhida."
+      },
+      {
+        "name": "meter-step",
+        "value": "90ms steps(1), 110ms por degrau",
+        "purpose": "Medidores sobem em degraus, de baixo para cima."
+      },
+      {
+        "name": "monitor-travel",
+        "value": "600ms",
+        "purpose": "Transição de visualização do monitor entre a home e a página de projeto."
+      },
+      {
+        "name": "power-on",
+        "value": "1100ms",
+        "purpose": "Entrada do monitor; a fita se desenrola em 900ms e os nomes são escritos em 520ms, 90ms entre um e outro."
+      },
+      {
+        "name": "screen-pan",
+        "value": "24s alternate (16s, uma vez, quando há mais de uma página)",
+        "purpose": "O print rola dentro da tela; pausa na tecla e sob o cursor."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "md",
+        "value": "48rem"
+      },
+      {
+        "name": "lg",
+        "value": "64rem"
+      },
+      {
+        "name": "strips",
+        "value": "75rem"
+      },
+      {
+        "name": "xl",
+        "value": "80rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tecla",
+      "kind": "button",
+      "refersTo": "key",
+      "description": "A tecla padrão sobre o painel: todo botão e link de ação.",
+      "html": "<button class=\"ds-key\" type=\"button\">Falar comigo</button>",
+      "css": ".ds-key { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.55rem 1rem; border: 1px solid var(--groove-a); border-radius: 5px; background: var(--face-up); color: var(--ink); font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.75rem; font-stretch: 116%; font-weight: 650; letter-spacing: 0.08em; line-height: 1.1; text-transform: uppercase; text-decoration: none; cursor: pointer; box-shadow: 0 2px 3px -1px var(--groove-a), inset 0 1px 0 var(--groove-b); transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms; } .ds-key:hover { background: color-mix(in oklab, var(--face-up) 82%, var(--ink) 18%); } .ds-key:active, .ds-key[aria-pressed='true'] { transform: translateY(1px); box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.28); } .ds-key:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Tecla principal",
+      "kind": "button",
+      "refersTo": "key-primary",
+      "description": "A ação principal da cena, em vermelho de tampa.",
+      "html": "<a class=\"ds-key ds-key-primary\" href=\"#\">Abrir Sabo<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m13 6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-key { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.55rem 1rem; border: 1px solid var(--groove-a); border-radius: 5px; background: var(--face-up); color: var(--ink); font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.75rem; font-stretch: 116%; font-weight: 650; letter-spacing: 0.08em; line-height: 1.1; text-transform: uppercase; text-decoration: none; cursor: pointer; box-shadow: 0 2px 3px -1px var(--groove-a), inset 0 1px 0 var(--groove-b); transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms; } .ds-key:hover { background: color-mix(in oklab, var(--face-up) 82%, var(--ink) 18%); } .ds-key:active, .ds-key[aria-pressed='true'] { transform: translateY(1px); box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.28); } .ds-key:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } .ds-key-primary { border-color: rgb(0 0 0 / 0.35); background: var(--cap-red); color: #fff; } .ds-key-primary:hover { background: color-mix(in oklab, var(--cap-red) 86%, #000 14%); }"
+    },
+    {
+      "name": "Tecla no poço",
+      "kind": "button",
+      "refersTo": "key-well",
+      "description": "Tecla sobre o fundo escuro do poço.",
+      "html": "<div class=\"ds-well-demo\"><button class=\"ds-key ds-key-well\" type=\"button\">Falar comigo</button></div>",
+      "css": ".ds-key { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.55rem 1rem; border: 1px solid var(--groove-a); border-radius: 5px; background: var(--face-up); color: var(--ink); font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.75rem; font-stretch: 116%; font-weight: 650; letter-spacing: 0.08em; line-height: 1.1; text-transform: uppercase; text-decoration: none; cursor: pointer; box-shadow: 0 2px 3px -1px var(--groove-a), inset 0 1px 0 var(--groove-b); transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms; } .ds-key:hover { background: color-mix(in oklab, var(--face-up) 82%, var(--ink) 18%); } .ds-key:active, .ds-key[aria-pressed='true'] { transform: translateY(1px); box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.28); } .ds-key:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } .ds-well-demo { padding: 1.5rem; background: var(--well); } .ds-key-well { border-color: var(--well-groove); background: var(--well-up); color: var(--well-ink); box-shadow: 0 2px 4px -1px rgb(0 0 0 / 0.6), inset 0 1px 0 rgb(255 255 255 / 0.08); } .ds-key-well:hover { background: color-mix(in oklab, var(--well-up) 80%, var(--well-ink) 20%); }"
+    },
+    {
+      "name": "Tecla pequena com lâmpada",
+      "kind": "chip",
+      "refersTo": "key-small",
+      "description": "Tecla de estado: idioma, solo, luz. aria-pressed acende a lâmpada.",
+      "html": "<div class=\"ds-keys\"><button class=\"ds-key ds-key-small\" type=\"button\" aria-pressed=\"true\"><span class=\"ds-lamp\" style=\"--cap: var(--cap-yellow)\"></span>Todos</button><button class=\"ds-key ds-key-small\" type=\"button\" aria-pressed=\"false\"><span class=\"ds-lamp\" style=\"--cap: var(--cap-yellow)\"></span>Sabo</button></div>",
+      "css": ".ds-key { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.55rem 1rem; border: 1px solid var(--groove-a); border-radius: 5px; background: var(--face-up); color: var(--ink); font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.75rem; font-stretch: 116%; font-weight: 650; letter-spacing: 0.08em; line-height: 1.1; text-transform: uppercase; text-decoration: none; cursor: pointer; box-shadow: 0 2px 3px -1px var(--groove-a), inset 0 1px 0 var(--groove-b); transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms; } .ds-key:hover { background: color-mix(in oklab, var(--face-up) 82%, var(--ink) 18%); } .ds-key:active, .ds-key[aria-pressed='true'] { transform: translateY(1px); box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.28); } .ds-key:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } .ds-lamp { flex: none; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: color-mix(in oklab, var(--cap, var(--cap-red)) 18%, transparent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cap, var(--cap-red)) 55%, transparent); transition: background-color 200ms, box-shadow 200ms; } [aria-pressed='true'] > .ds-lamp, .ds-lamp[data-on='true'] { background: var(--cap, var(--cap-red)); box-shadow: 0 0 6px 1px color-mix(in oklab, var(--cap, var(--cap-red)) 60%, transparent); } .ds-keys { display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-key-small { min-height: 2.25rem; padding: 0.35rem 0.7rem; font-size: 0.6875rem; }"
+    },
+    {
+      "name": "Ponte com placa e navegação",
+      "kind": "nav",
+      "refersTo": "nameplate",
+      "description": "Cabeçalho: placa do nome e links em legenda com fio vermelho sob o cursor.",
+      "html": "<div class=\"ds-bridge\"><a class=\"ds-nameplate\" href=\"#\">Gabriel Accioly</a><nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Projetos</a><a class=\"ds-nav-link\" href=\"#\">Habilidades</a><a class=\"ds-nav-link\" href=\"#\">Processo</a></nav></div>",
+      "css": ".ds-bridge { display: flex; align-items: center; gap: 2rem; padding: 0.4rem 1rem; background: var(--face); border-bottom: 1px solid var(--groove-a); box-shadow: 0 1px 0 var(--groove-b); } .ds-nameplate { display: inline-flex; align-items: center; padding: 0.4rem 0.7rem; border: 1px solid var(--groove-a); border-radius: 3px; background: var(--ink); color: var(--face); font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.8125rem; font-stretch: 125%; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap; } .ds-nav { display: flex; gap: 1.75rem; font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.6875rem; font-stretch: 118%; font-weight: 600; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase; } .ds-nav-link { position: relative; display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: 0.15rem; color: var(--ink); text-decoration: none; white-space: nowrap; } .ds-nav-link::after { content: ''; position: absolute; inset: auto 0 0.55rem 0; height: 2px; background: var(--cap-red); transform: scaleX(0); transform-origin: left; transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-link:hover::after, .ds-nav-link:focus-visible::after { transform: scaleX(1); } .ds-nav-link:focus-visible, .ds-nameplate:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Tira de fita",
+      "kind": "custom",
+      "refersTo": "tape-strip",
+      "description": "A fita crepe com os nomes dos projetos a caneta; o nome em cena recebe o traço vermelho.",
+      "html": "<div class=\"ds-tape-strip\"><button class=\"ds-tape-name\" type=\"button\" aria-pressed=\"false\">Diapasão</button><button class=\"ds-tape-name\" type=\"button\" aria-pressed=\"true\">Sabo</button><button class=\"ds-tape-name\" type=\"button\" aria-pressed=\"false\">ZipZap</button></div>",
+      "css": ".ds-tape-strip { display: flex; flex-wrap: wrap; align-items: center; column-gap: 1rem; padding: 0.5rem 1.5rem; background: var(--tape); border-block: 1px solid var(--tape-edge); box-shadow: 0 3px 8px -2px rgb(0 0 0 / 0.45); transform: rotate(-0.45deg); } .ds-tape-name { position: relative; display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.2rem 0.35rem; border: 0; background: none; color: var(--marker); font-family: 'Mynerve', 'Segoe Print', cursive; font-size: clamp(1.2rem, 0.75rem + 0.65vw, 1.6rem); line-height: 1; white-space: nowrap; cursor: pointer; } .ds-tape-name::after { content: ''; position: absolute; inset: auto 0.2rem 0.2rem; height: 0.5rem; background: no-repeat center / 100% 100% url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6c18-4 30 3 48-1s34-3 68 1' fill='none' stroke='%23cf3a2b' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E\"); clip-path: inset(0 100% 0 0); transition: clip-path 420ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-tape-name:hover::after { clip-path: inset(0 55% 0 0); } .ds-tape-name[aria-pressed='true']::after { clip-path: inset(0 0 0 0); } .ds-tape-name:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Etiqueta de fita",
+      "kind": "chip",
+      "refersTo": "tape",
+      "description": "Pedaço de fita com o nome do projeto, levemente torto.",
+      "html": "<span class=\"ds-tape\">Kaya Mind</span>",
+      "css": ".ds-tape { display: inline-block; padding: 0.3em 0.75em 0.36em; background: var(--tape); color: var(--marker); font-family: 'Mynerve', 'Segoe Print', cursive; font-size: 1.625rem; line-height: 1.05; box-shadow: 0 1px 2px rgb(0 0 0 / 0.28); transform: rotate(-0.7deg); }"
+    },
+    {
+      "name": "Seletor de monitor",
+      "kind": "custom",
+      "refersTo": "nest-size",
+      "description": "Os cinco tamanhos de tela como contornos aninhados em escala real; o atual cheio, os outros tracejados.",
+      "html": "<div class=\"ds-well-demo\"><div class=\"ds-nest\"><button class=\"ds-nest-size\" type=\"button\" aria-pressed=\"false\" style=\"--nw: 100%; --nh: 91.5%\"><span class=\"ds-nest-tag\">2560</span></button><button class=\"ds-nest-size\" type=\"button\" aria-pressed=\"false\" style=\"--nw: 75%; --nh: 91.5%\"><span class=\"ds-nest-tag\">1920</span></button><button class=\"ds-nest-size\" type=\"button\" aria-pressed=\"true\" style=\"--nw: 56.25%; --nh: 76.3%\"><span class=\"ds-nest-tag\">1440</span></button><button class=\"ds-nest-size\" type=\"button\" aria-pressed=\"false\" style=\"--nw: 32%; --nh: 100%\"><span class=\"ds-nest-tag\">820</span></button><button class=\"ds-nest-size\" type=\"button\" aria-pressed=\"false\" style=\"--nw: 15.2%; --nh: 71.5%\"><span class=\"ds-nest-tag\">390</span></button></div></div>",
+      "css": ".ds-well-demo { padding: 1.5rem; background: var(--well); } .ds-nest { position: relative; width: 100%; max-width: 21rem; aspect-ratio: 2560 / 1180; } .ds-nest-size { position: absolute; left: 0; bottom: 0; width: var(--nw); height: var(--nh); border: 1px dashed color-mix(in oklab, var(--well-ink) 50%, transparent); border-radius: 3px; background: var(--well); color: var(--well-soft); cursor: pointer; transition: border-color 200ms, background-color 200ms, color 200ms; } .ds-nest-size:hover { border-style: solid; border-color: var(--well-ink); color: var(--well-ink); } .ds-nest-size[aria-pressed='true'] { border: 2px solid var(--cap-yellow); background: color-mix(in oklab, var(--cap-yellow) 16%, var(--well)); color: var(--well-ink); } .ds-nest-size:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } .ds-nest-tag { position: absolute; right: 0.3rem; bottom: 0.2rem; font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.625rem; font-stretch: 110%; font-weight: 650; letter-spacing: 0.03em; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }"
+    },
+    {
+      "name": "Ponte de medidores e fader",
+      "kind": "custom",
+      "refersTo": "fader-cap",
+      "description": "Pé da faixa de projeto: uma escada de LED por barramento, com o apagado desenhado, e o fader que abre o projeto.",
+      "html": "<a class=\"ds-strip\" href=\"#\"><span class=\"ds-meters\"><span class=\"ds-meter\" style=\"--cap: var(--cap-red)\"><i></i><i></i><i data-on=\"true\"></i><i data-on=\"true\"></i><i data-on=\"true\"></i></span><span class=\"ds-meter\" style=\"--cap: var(--cap-yellow)\"><i></i><i></i><i></i><i data-on=\"true\"></i><i data-on=\"true\"></i></span><span class=\"ds-meter\" style=\"--cap: var(--cap-cream)\"><i></i><i data-on=\"true\"></i><i data-on=\"true\"></i><i data-on=\"true\"></i><i data-on=\"true\"></i></span><span class=\"ds-meter\" style=\"--cap: var(--cap-blue)\"><i></i><i></i><i></i><i></i><i data-on=\"true\"></i></span><span class=\"ds-meter\" style=\"--cap: var(--cap-green)\"><i></i><i></i><i data-on=\"true\"></i><i data-on=\"true\"></i><i data-on=\"true\"></i></span><span class=\"ds-meter\" style=\"--cap: var(--cap-orange)\"><i></i><i></i><i></i><i data-on=\"true\"></i><i data-on=\"true\"></i></span></span><span class=\"ds-fader\"><span class=\"ds-fader-track\"><span class=\"ds-fader-cap\"></span></span><span class=\"ds-legend\">Abrir projeto</span></span></a>",
+      "css": ".ds-strip { display: flex; flex-direction: column; gap: 0.9rem; max-width: 14rem; padding: 1.5rem 1.15rem 1.4rem; border-right: 1px solid var(--groove-a); border-bottom: 1px solid var(--groove-a); box-shadow: inset -1px 0 0 var(--groove-b), inset 0 -1px 0 var(--groove-b); background: var(--face); color: var(--ink); text-decoration: none; transition: background-color 300ms; } .ds-strip:hover, .ds-strip:focus-visible { background: var(--face-up); } .ds-meters { display: flex; gap: 0.3rem; } .ds-meter { display: grid; grid-auto-rows: 0.3rem; gap: 2px; width: 0.8rem; } .ds-meter i { border-radius: 1px; background: color-mix(in oklab, var(--cap) 20%, var(--face-down)); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 16%, transparent); } .ds-meter i[data-on='true'] { background: var(--cap); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.28); } .ds-fader { display: grid; gap: 0.55rem; padding-top: 0.5rem; } .ds-fader-track { position: relative; height: 0.375rem; border-radius: 2px; background: var(--face-down); box-shadow: inset 0 1px 2px var(--groove-a), 0 1px 0 var(--groove-b); } .ds-fader-cap { position: absolute; top: 50%; left: 0; width: 1.75rem; height: 1.125rem; border-radius: 2px; background: linear-gradient(90deg, transparent 46%, rgb(255 255 255 / 0.85) 46% 54%, transparent 54%), var(--cap-red); box-shadow: 0 2px 4px -1px rgb(0 0 0 / 0.5), inset 0 0 0 1px rgb(0 0 0 / 0.3); translate: 0 -50%; transition: left 520ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-strip:hover .ds-fader-cap, .ds-strip:focus-visible .ds-fader-cap { left: calc(100% - 1.75rem); } .ds-legend { font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.6875rem; font-stretch: 118%; font-weight: 600; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Linha da matriz de canais",
+      "kind": "custom",
+      "refersTo": "lamp",
+      "description": "Uma habilidade e suas células por projeto; a apagada também é desenhada.",
+      "html": "<div class=\"ds-mx\" style=\"--cap: var(--cap-blue)\"><div class=\"ds-mx-head\"><span class=\"ds-mx-legend\"><span class=\"ds-lamp\" data-on=\"true\"></span>IA</span></div><div class=\"ds-mx-row\"><span class=\"ds-mx-label\">Agentes com ferramentas</span><span class=\"ds-mx-cell\" data-on=\"true\"></span><span class=\"ds-mx-cell\"></span><span class=\"ds-mx-cell\" data-on=\"true\"></span><span class=\"ds-mx-cell\"></span></div><div class=\"ds-mx-row\"><span class=\"ds-mx-label\">Busca semântica</span><span class=\"ds-mx-cell\"></span><span class=\"ds-mx-cell\" data-on=\"true\"></span><span class=\"ds-mx-cell\"></span><span class=\"ds-mx-cell\"></span></div></div>",
+      "css": ".ds-mx { max-width: 22rem; padding: 1rem; background: var(--face-up); color: var(--ink); } .ds-mx-head { padding-bottom: 0.5rem; border-bottom: 1px solid var(--groove-a); box-shadow: 0 1px 0 var(--groove-b); } .ds-mx-legend { display: flex; align-items: center; gap: 0.5rem; font-family: 'Anybody', 'Arial Narrow', sans-serif; font-size: 0.6875rem; font-stretch: 118%; font-weight: 600; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase; } .ds-mx-row { display: grid; grid-template-columns: minmax(0, 1fr) repeat(4, 1.125rem); align-items: center; column-gap: 0.1875rem; min-height: 2rem; border-bottom: 1px solid color-mix(in oklab, var(--groove-a) 45%, transparent); } .ds-mx-label { font-family: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; font-weight: 500; line-height: 1.2; } .ds-mx-cell { justify-self: center; width: 0.8125rem; height: 0.8125rem; border-radius: 3px; background: color-mix(in oklab, var(--ink) 7%, transparent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 22%, transparent); transition: background-color 260ms, box-shadow 260ms; } .ds-mx-cell[data-on='true'] { background: var(--cap); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.28); } .ds-lamp { flex: none; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: color-mix(in oklab, var(--cap, var(--cap-red)) 18%, transparent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cap, var(--cap-red)) 55%, transparent); transition: background-color 200ms, box-shadow 200ms; } [aria-pressed='true'] > .ds-lamp, .ds-lamp[data-on='true'] { background: var(--cap, var(--cap-red)); box-shadow: 0 0 6px 1px color-mix(in oklab, var(--cap, var(--cap-red)) 60%, transparent); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Sala de Mixagem",
+    "overview": "O site é a mesa de um estúdio onde uma pessoa toca todos os instrumentos. Cada produto é uma faixa da mesa, cada habilidade é um canal que acende, e o produto em cena aparece num monitor que muda de formato. A página é um painel esmaltado azul-acinzentado: com a luz acesa ele é claro, com a luz baixa ele vira petróleo. O painel é dividido por sulcos gravados, as legendas são serigrafadas em caixa alta estendida, e uma fita crepe atravessa a mesa com os nomes dos projetos escritos a caneta.\n\nA densidade é a de um equipamento: fio fino, peças pequenas e exatas, e uma leitura grande por cena (a frase do monitor, o título de cada faixa de página). Tudo que indica estado é desenhado também apagado, de modo que a mesa parada já está completa. A seleção nunca fica num lugar só: escolher um projeto muda a fita, o monitor, o texto da tecla principal e, no solo, a matriz de canais.\n\nO que este mundo recusa, por decisão do projeto: nome gigante no alto seguido de grade de cartões de projeto. Aqui projeto é faixa de mesa, separada por sulco.",
+    "keyCharacteristics": [
+      "Painel esmaltado em dois estados de luz (`light-dark()` nos tokens, `data-theme` como escolha manual).",
+      "Poço escuro nos dois temas, onde ficam os dispositivos e o processo.",
+      "Sulco gravado (corte escuro com lábio claro) no lugar de cartão e sombra.",
+      "Seis cores de tampa, uma por barramento; o vermelho também é a cor de ação.",
+      "Três vozes de letra: display estendido (Anybody), texto (Hanken Grotesk), caneta (Mynerve).",
+      "Um corpo 3D que vira cinco dispositivos mudando só os números.",
+      "JavaScript só acrescenta; cada cena tem estado parado completo."
+    ],
+    "rules": [
+      {
+        "name": "A Regra do Barramento",
+        "body": "Cor de tampa só entra carregando um barramento (`data-bus` define `--cap`) ou como ação (vermelho) e sinal (amarelo). Cor nova não entra para enfeitar.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Poço",
+        "body": "O poço é escuro com a luz acesa e com a luz baixa. Dentro dele use `well-ink`, `well-soft`, `well-groove` e a tecla `key-well`; nunca `ink` nem `face`.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Token",
+        "body": "Cor de interface vem de token (`var(--…)` ou utilitário `text-ink`, `bg-well`). Tema se resolve em `light-dark()` no token, não em variante `dark:`.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Legenda",
+        "body": "A legenda rotula um painel, um controle ou um dado. Ela não vira subtítulo em cima de título.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Caneta",
+        "body": "Mynerve só escreve nome de projeto (na fita, na etiqueta, na tela sem print) e a palavra da fita da assinatura. Nenhum outro texto é manuscrito.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Largura",
+        "body": "A hierarquia da Anybody se faz com peso e largura (`font-stretch` de 116% a 150%), não com outra família.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Sulco",
+        "body": "Painel se divide com sulco ou com troca de plano, nunca com cartão sombreado.",
+        "section": "elevation"
+      },
+      {
+        "name": "A Regra do Objeto Solto",
+        "body": "Só projeta sombra o que estaria solto sobre a mesa. Texto, faixa e painel não têm sombra.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do desenhar o estado apagado de tudo que acende: lâmpada, célula, degrau de medidor, contorno tracejado do seletor.",
+      "Do mostrar a seleção em mais de um lugar: fita, monitor, tecla principal e, no solo, a matriz.",
+      "Do dividir o painel com sulco (`groove`, `groove-b`) ou com troca de plano (`face`, `face-up`, poço).",
+      "Do usar `key`, `key-primary`, `key-well` e `key-small` para todo botão e link de ação que não seja uma peça própria da mesa (nome na fita, contorno do seletor, conector do patch bay, faixa de projeto), com 2.75rem de altura mínima.",
+      "Do dar a cada cena um estado parado completo: movimento novo entra em `@media (prefers-reduced-motion: no-preference)` e parte de um estado já visível.",
+      "Do usar `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`) para resposta e `--ease-in-out` para percurso; medidor sobe em degraus.",
+      "Do medir em `cqw` dentro de `.rig` e `.dv-screen`.",
+      "Do manter a página navegável sem JavaScript: estado em atributo (`aria-pressed`, `data-*`), movimento no CSS."
+    ],
+    "donts": [
+      "Don't abrir a página com nome gigante no alto e grade de cartões de projeto.",
+      "Don't separar conteúdo com cartão sombreado; a mesa tem sulco.",
+      "Don't clarear o poço no tema claro nem usar `ink` ou `face` dentro dele.",
+      "Don't acrescentar cor de tampa sem barramento, nem usar tampa como decoração.",
+      "Don't escrever a caneta outra coisa que não nome de projeto ou a fita da assinatura.",
+      "Don't pôr legenda como subtítulo em cima de título.",
+      "Don't usar o fader fora da faixa de projeto.",
+      "Don't escrever cor em hex no template nem variante `dark:` para cor que já tem token.",
+      "Don't deixar animação contínua sem pausa."
+    ]
+  }
+}

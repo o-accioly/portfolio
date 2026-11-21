@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load console %}
+
+{% block title %}404 · {{ author }}{% endblock %}
+
+{% block content %}
+<section class="band min-h-[60svh]">
+  <div class="band-inner">
+    <h1 class="display-2 max-w-[18ch]">{{ t.errors.not_found_title }}</h1>
+    <p class="lead mt-4 text-ink-soft">{{ t.errors.not_found_body }}</p>
+    <a class="key key-primary mt-8" href="{% url 'portfolio:home' %}">{% icon "arrow-left" 16 %}{{ t.detail.back }}</a>
+  </div>
+</section>
+{% endblock %}

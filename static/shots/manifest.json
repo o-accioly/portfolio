@@ -1,0 +1,1564 @@
+{
+ "desbravador": {
+  "pages": {
+   "dados": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      844
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1180
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ]
+    }
+   },
+   "execucoes": {
+    "desktop": {
+     "full": [
+      1600,
+      1457
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1748
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2232
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      2145
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1092
+     ]
+    }
+   },
+   "extrator": {
+    "desktop": {
+     "full": [
+      1600,
+      1062
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1275
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1747
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1363
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      797
+     ]
+    }
+   },
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      900
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      844
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1180
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "painel": {
+    "desktop": {
+     "full": [
+      1600,
+      1028
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1233
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2046
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1534
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      771
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "diapasao": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      4500
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      4500
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      4220
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      5900
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      3375
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "crm": {
+    "desktop": {
+     "full": [
+      1600,
+      2700
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3540
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      2025
+     ]
+    }
+   },
+   "loja": {
+    "desktop": {
+     "full": [
+      1600,
+      2700
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3540
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      2025
+     ]
+    }
+   },
+   "assistente": {
+    "desktop": {
+     "full": [
+      1600,
+      4500
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      4500
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      4220
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      5900
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      3375
+     ]
+    }
+   }
+  },
+  "inside": [
+   {
+    "file": "inside-laptop-atendimento.webp",
+    "size": [
+     1280,
+     800
+    ],
+    "device": "laptop",
+    "name": "atendimento",
+    "video": {
+     "webm": "inside-laptop-atendimento.webm",
+     "mp4": "inside-laptop-atendimento.mp4"
+    }
+   },
+   {
+    "file": "inside-laptop-crm.webp",
+    "size": [
+     1280,
+     800
+    ],
+    "device": "laptop",
+    "name": "crm",
+    "video": {
+     "webm": "inside-laptop-crm.webm",
+     "mp4": "inside-laptop-crm.mp4"
+    }
+   },
+   {
+    "file": "inside-laptop-fatura.webp",
+    "size": [
+     1280,
+     800
+    ],
+    "device": "laptop",
+    "name": "fatura",
+    "video": {
+     "webm": "inside-laptop-fatura.webm",
+     "mp4": "inside-laptop-fatura.mp4"
+    }
+   },
+   {
+    "file": "inside-laptop-mercadolivre.webp",
+    "size": [
+     1280,
+     800
+    ],
+    "device": "laptop",
+    "name": "mercadolivre",
+    "video": {
+     "webm": "inside-laptop-mercadolivre.webm",
+     "mp4": "inside-laptop-mercadolivre.mp4"
+    }
+   },
+   {
+    "file": "inside-laptop-pdv.webp",
+    "size": [
+     1280,
+     800
+    ],
+    "device": "laptop",
+    "name": "pdv",
+    "video": {
+     "webm": "inside-laptop-pdv.webm",
+     "mp4": "inside-laptop-pdv.mp4"
+    }
+   },
+   {
+    "file": "inside-laptop-produtos.webp",
+    "size": [
+     1280,
+     800
+    ],
+    "device": "laptop",
+    "name": "produtos",
+    "video": {
+     "webm": "inside-laptop-produtos.webm",
+     "mp4": "inside-laptop-produtos.mp4"
+    }
+   }
+  ]
+ },
+ "duetto": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      4500
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      4500
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      4220
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      5900
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      3375
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "categoria": {
+    "desktop": {
+     "full": [
+      1600,
+      2574
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3362
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1931
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "kaya-dashboard": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      1362
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1634
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      894
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1634
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1021
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "console": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      973
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1433
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ]
+    }
+   },
+   "paineis": {
+    "desktop": {
+     "full": [
+      1600,
+      970
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1164
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1782
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      728
+     ]
+    }
+   },
+   "eventos": {
+    "desktop": {
+     "full": [
+      1600,
+      2253
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3540
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1690
+     ]
+    }
+   },
+   "entrar": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      900
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1180
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "kayadoc": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      3727
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      4472
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      4220
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      5066
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      2795
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "funcionalidades": {
+    "desktop": {
+     "full": [
+      1600,
+      2700
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3540
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      2025
+     ]
+    }
+   },
+   "planos": {
+    "desktop": {
+     "full": [
+      1600,
+      2700
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3540
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      2025
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "kayaeducation": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      1158
+     ],
+     "top": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1390
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1863
+     ],
+     "top": [
+      390,
+      844
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1445
+     ],
+     "top": [
+      820,
+      1180
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      869
+     ],
+     "top": [
+      1600,
+      675
+     ]
+    }
+   },
+   "aula": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1036
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1154
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1180
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ]
+    }
+   },
+   "conteudo": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1034
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1603
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1180
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      764
+     ]
+    }
+   },
+   "engajamento": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      969
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1407
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1261
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ]
+    }
+   },
+   "entrar": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      844
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1180
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ]
+    }
+   },
+   "painel": {
+    "desktop": {
+     "full": [
+      1600,
+      1281
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1537
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      929
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      2133
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      961
+     ]
+    }
+   },
+   "trilha": {
+    "desktop": {
+     "full": [
+      1600,
+      900
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      844
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1180
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      675
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "kayamind": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      2584
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      3074
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      4220
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3796
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1979
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "relatorios": {
+    "desktop": {
+     "full": [
+      1600,
+      2700
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3540
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      2025
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "optimum": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      3734
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      4481
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      4220
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      5358
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      2801
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "quem-somos": {
+    "desktop": {
+     "full": [
+      1600,
+      2256
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2700
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      3540
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1692
+     ]
+    }
+   },
+   "calculadora": {
+    "desktop": {
+     "full": [
+      1600,
+      1839
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      2207
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      2904
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1379
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "sabo": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      1362
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1634
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2365
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1865
+     ],
+     "top": [
+      1230,
+      1770
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1021
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "consultas": {
+    "desktop": {
+     "full": [
+      1600,
+      1302
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1562
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2213
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      1809
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      976
+     ]
+    }
+   },
+   "custo": {
+    "desktop": {
+     "full": [
+      1600,
+      1497
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1762
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2532
+     ]
+    },
+    "tablet": {
+     "full": [
+      820,
+      2684
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      1122
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "standup": {
+  "pages": {
+   "home": {
+    "desktop": {
+     "full": [
+      1600,
+      908
+     ],
+     "top": [
+      1920,
+      1080
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      909
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1236
+     ],
+     "top": [
+      585,
+      1266
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      681
+     ],
+     "top": [
+      2560,
+      1080
+     ]
+    }
+   },
+   "operacional": {
+    "desktop": {
+     "full": [
+      1600,
+      954
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1006
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1653
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      716
+     ]
+    }
+   },
+   "daily": {
+    "desktop": {
+     "full": [
+      1600,
+      954
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      1014
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1127
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      716
+     ]
+    }
+   },
+   "ata": {
+    "desktop": {
+     "full": [
+      1600,
+      908
+     ]
+    },
+    "laptop": {
+     "full": [
+      1440,
+      909
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1303
+     ]
+    },
+    "ultrawide": {
+     "full": [
+      1600,
+      681
+     ]
+    }
+   }
+  },
+  "inside": []
+ },
+ "zipzap": {
+  "pages": {
+   "conversas": {
+    "laptop": {
+     "full": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      844
+     ]
+    }
+   },
+   "home": {
+    "laptop": {
+     "full": [
+      1440,
+      970
+     ],
+     "top": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      2063
+     ],
+     "top": [
+      390,
+      844
+     ]
+    }
+   },
+   "instancia": {
+    "laptop": {
+     "full": [
+      1440,
+      967
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1513
+     ]
+    }
+   },
+   "webhooks": {
+    "laptop": {
+     "full": [
+      1440,
+      900
+     ]
+    },
+    "phone": {
+     "full": [
+      390,
+      1054
+     ]
+    }
+   }
+  },
+  "inside": []
+ }
+}

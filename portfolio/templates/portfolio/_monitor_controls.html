@@ -1,0 +1,13 @@
+{% load console %}
+{% comment %}Readout under the monitor, and the key that pauses its motion. Context: current, devices, t.{% endcomment %}
+<div class="relative z-10 mt-2 flex items-center justify-between gap-4">
+  <p class="legend leading-relaxed text-well-soft" aria-live="polite">
+    {{ t.hero.on_stage }}: <span class="text-well-ink" data-bind="project-name">{{ current.name }}</span>
+    <span aria-hidden="true">·</span>
+    {% for device in devices %}{% if device.key == current_device %}<span data-bind="device-label">{{ device.label }}</span>
+    <span class="tabular whitespace-nowrap text-well-ink" data-bind="device-size">{{ device.width }} × {{ device.height }}</span>{% endif %}{% endfor %}
+  </p>
+  <button class="key key-well key-small shrink-0" type="button" data-cycle aria-pressed="false" aria-label="{{ t.detail.cycle }}" title="{{ t.detail.cycle }}" hidden>
+    <span data-cycle-play>{% icon "play" 14 %}</span><span data-cycle-pause hidden>{% icon "pause" 14 %}</span>
+  </button>
+</div>

@@ -1,0 +1,8 @@
+.venv/
+.git/
+.env
+.impeccable/
+.claude/
+staticfiles/
+__pycache__/
+*.pyc

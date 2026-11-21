@@ -1,0 +1,25 @@
+# Production service for Dokploy (Docker Compose). Dokploy adds the Traefik labels and the
+# dokploy-network when a domain is set in its Domains tab, and injects the variables below
+# from its Environment tab (see .env.example).
+services:
+  web:
+    build: .
+    image: oaccioly/portfolio:latest
+    restart: unless-stopped
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?set DJANGO_SECRET_KEY}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-oacciolyfaz.com,www.oacciolyfaz.com}
+      DJANGO_CSRF_TRUSTED_ORIGINS: ${DJANGO_CSRF_TRUSTED_ORIGINS:-https://oacciolyfaz.com,https://www.oacciolyfaz.com}
+      SITE_URL: ${SITE_URL:-https://oacciolyfaz.com}
+      DJANGO_HSTS_SECONDS: ${DJANGO_HSTS_SECONDS:-31536000}
+      DJANGO_HSTS_INCLUDE_SUBDOMAINS: ${DJANGO_HSTS_INCLUDE_SUBDOMAINS:-0}
+      CONTACT_EMAIL: ${CONTACT_EMAIL:-}
+      REPO_URL: ${REPO_URL:-}
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen(u.Request('http://127.0.0.1:8000/', headers={'Host': 'oacciolyfaz.com', 'X-Forwarded-Proto': 'https'}))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

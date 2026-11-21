@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load console %}
+
+{% block content %}
+{# ---------------------------------------------------------------- monitor #}
+<section class="well overflow-x-clip px-(--gutter) pt-8 pb-7 lg:pt-10" aria-labelledby="hero-title" data-stage>
+  <div class="band-inner">
+    <h1 class="display-1" id="hero-title" style="--chars: {{ t.hero.title|length }}">{{ t.hero.title }}</h1>
+
+    <div class="mt-6 grid gap-x-12 gap-y-8 lg:mt-8 lg:grid-cols-[minmax(0,0.5fr)_minmax(0,1.5fr)] lg:grid-rows-[auto_1fr]">
+      <div class="lg:pt-4">
+        <p class="lead text-well-soft">{{ t.hero.lead }}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a class="key key-primary" href="{{ current.href }}" data-bind="project-link">
+            <span data-bind="project-open">{{ open_label }}</span>{% icon "arrow-right" 16 %}
+          </a>
+          <a class="key key-well" href="#contato">{{ t.hero.contact }}</a>
+        </div>
+      </div>
+
+      <div class="min-w-0 lg:row-span-2">
+        {% include "portfolio/_monitor.html" %}
+        {% include "portfolio/_monitor_controls.html" %}
+      </div>
+
+      <div class="lg:self-end">
+        {% include "portfolio/_monitor_select.html" %}
+      </div>
+    </div>
+  </div>
+
+  <div class="band-inner mt-8 -mb-12 lg:mt-10">
+    <div class="tape-strip" role="group" aria-label="{{ t.hero.tape }}">
+      <div class="tape-list">
+        {% for project in projects %}
+        <button class="tape-name" type="button" data-set-project="{{ project.slug }}" style="--n: {{ forloop.counter0 }}"
+                aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ project.name }}</button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- channel strips #}
+<section class="band pt-28!" id="projetos" aria-labelledby="projects-title">
+  <div class="band-inner">
+    <div class="mb-10 grid gap-x-12 gap-y-4 lg:grid-cols-2 lg:items-end">
+      <h2 class="display-2" id="projects-title">{{ t.projects.title }}</h2>
+      <p class="lead text-ink-soft">{{ t.projects.lead }}</p>
+    </div>
+
+    <div class="strips" data-reveal="meters">
+      {% for project in projects %}
+      <a class="strip" href="{{ project.href }}">
+        <div class="handset">
+          <div class="handset-screen">
+            {% if project.phone %}
+            <img src="{{ project.phone.top }}" alt="" width="585" height="1266" loading="lazy" decoding="async">
+            {% else %}
+            <div class="dv-states">
+              {% for line in project.screen %}
+              <p class="dv-state" style="--n: {{ forloop.counter0 }}"><span class="lamp"></span>{{ line }}</p>
+              {% endfor %}
+              <p class="dv-states-note">{{ t.projects.illustration }}</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <span class="tape self-start justify-self-start" style="--tape-turn: {% cycle '-1.2deg' '0.8deg' '-0.5deg' '1.1deg' '-0.9deg' %}">{{ project.name }}</span>
+        <p class="leading-snug font-medium">{{ project.text.tagline }}</p>
+        <p class="legend leading-relaxed text-ink-soft">{{ project.text.role }}{% if project.since %}<br>{{ project.since }}{% endif %}</p>
+        <div class="meters" aria-hidden="true">
+          {% for meter in project.meters %}
+          <span class="meter" data-bus="{{ meter.bus }}" title="{{ meter.label }}: {{ meter.count }}">{% for on in meter.cells %}<i data-on="{{ on|yesno:'true,false' }}"></i>{% endfor %}</span>
+          {% endfor %}
+        </div>
+        <span class="fader mt-auto">
+          <span class="fader-track"><span class="fader-cap"></span></span>
+          <span class="legend inline-flex items-center gap-1.5">{{ t.projects.open }}{% icon "arrow-right" 14 %}</span>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- routing matrix #}
+<section class="band groove bg-face-up" id="habilidades" aria-labelledby="skills-title">
+  <div class="band-inner">
+    <div class="grid gap-x-12 gap-y-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] xl:items-end">
+      <div>
+        <h2 class="display-2" id="skills-title">{{ t.skills.title }}</h2>
+        <p class="lead mt-4 text-ink-soft">{{ t.skills.lead }}</p>
+      </div>
+      <a class="scene text-inherit no-underline" href="{{ current.href }}" data-bind="project-link">
+        <div class="scene-screen">
+          <div class="dv-states" data-bind="scene-states"{% if current.laptop %} hidden{% endif %}>
+            <div class="contents" data-bind="screen-lines">
+              {% for line in current.screen %}
+              <p class="dv-state" style="--n: {{ forloop.counter0 }}"><span class="lamp"></span>{{ line }}</p>
+              {% endfor %}
+            </div>
+            <p class="dv-states-note">{{ t.projects.illustration }}</p>
+          </div>
+          <img src="{% if current.laptop %}{{ current.laptop.top }}{% endif %}" alt="" width="1440" height="900" loading="lazy" decoding="async" data-bind="scene-image"{% if not current.laptop %} hidden{% endif %}>
+        </div>
+        <div>
+          <p class="hand text-3xl" data-bind="project-name">{{ current.name }}</p>
+          <p class="legend mt-2 inline-flex items-center gap-1.5">{{ t.projects.open }}{% icon "arrow-right" 14 %}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-2" role="group" aria-label="{{ t.skills.solo }}">
+      <button class="key key-small" type="button" data-solo="" aria-pressed="true"><span class="lamp" data-bus="data"></span>{{ t.skills.all }}</button>
+      {% for project in projects %}
+      <button class="key key-small" type="button" data-solo="{{ project.slug }}" aria-pressed="false">
+        <span class="lamp" data-bus="data"></span><span class="tabular text-ink-soft">{{ project.code }}</span>{{ project.name }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <div class="matrix mt-10" data-matrix data-reveal="lamps" style="--cols: {{ projects|length }}">
+      {% for group in matrix %}
+      <div data-bus="{{ group.bus }}">
+        <div class="mx-head">
+          <h3 class="legend flex items-center gap-2"><span class="lamp" data-on="true"></span>{{ group.label }}</h3>
+          {% for project in projects %}<abbr class="mx-code no-underline" title="{{ project.name }}" data-col="{{ project.slug }}" aria-hidden="true">{{ project.code }}</abbr>{% endfor %}
+        </div>
+        <ul>
+          {% for row in group.rows %}
+          <li class="mx-row" data-uses="{{ row.uses }}" style="--row: {{ forloop.counter0 }}">
+            <span class="mx-label">{{ row.label }}<span class="sr-only">: {{ row.summary }} ({{ row.names }})</span></span>
+            {% for cell in row.cells %}<span class="mx-cell" data-col="{{ cell.slug }}" data-on="{{ cell.on|yesno:'true,false' }}" style="--col: {{ forloop.counter0 }}" aria-hidden="true"></span>{% endfor %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- patch bay (process) #}
+<section class="band well" id="processo" aria-labelledby="process-title">
+  <div class="band-inner">
+    <h2 class="display-2 max-w-[22ch]" id="process-title">{{ t.process.title }}</h2>
+    <p class="lead mt-4 text-well-soft">{{ t.process.lead }}</p>
+
+    <div class="patch mt-12" data-patch style="--steps: {{ t.process.steps|length }}">
+      <div class="patch-jacks" role="tablist" aria-labelledby="process-title">
+        <span class="patch-cable" aria-hidden="true"><span class="patch-signal"></span></span>
+        {% for step in t.process.steps %}
+        <button class="patch-jack" type="button" role="tab" id="patch-tab-{{ forloop.counter0 }}" aria-controls="patch-panel-{{ forloop.counter0 }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-patch-tab="{{ forloop.counter0 }}">
+          <span class="chain-jack" aria-hidden="true"></span><span class="legend">{{ step.stage }}</span>
+        </button>
+        {% endfor %}
+      </div>
+      <div class="patch-panels">
+        {% for step in t.process.steps %}
+        <div class="patch-panel" role="tabpanel" id="patch-panel-{{ forloop.counter0 }}" aria-labelledby="patch-tab-{{ forloop.counter0 }}" data-patch-panel="{{ forloop.counter0 }}">
+          <h3 class="display-2">{{ step.title }}</h3>
+          <p class="lead text-well-soft">{{ step.body }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- session lanes #}
+<section class="band" id="trajetoria" aria-labelledby="journey-title">
+  <div class="band-inner">
+    <div class="mb-10 grid gap-x-12 gap-y-4 lg:grid-cols-2 lg:items-end">
+      <h2 class="display-2" id="journey-title">{{ t.journey.title }}</h2>
+      <p class="lead text-ink-soft">{{ t.journey.lead }}</p>
+    </div>
+
+    <div class="lanes" data-reveal="lanes" style="--year: {{ timeline.year_step }}">
+      {% for lane in timeline.lanes %}
+      <div class="lane" data-bus="{{ lane.bus }}">
+        <div>
+          <p class="display-3">{{ lane.name }}</p>
+          <p class="mt-0.5 text-sm leading-snug text-ink-soft"><span class="legend tabular mr-1.5 whitespace-nowrap text-ink">{{ lane.from }} – {{ lane.to }}</span>{{ lane.role }}</p>
+        </div>
+        <div class="lane-track" aria-hidden="true">
+          <span class="lane-region" data-running="{{ lane.running|yesno:'true,false' }}" style="--left: {{ lane.left }}; --width: {{ lane.width }}; --n: {{ forloop.counter0 }}"></span>
+          <span class="playhead"></span>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="lane" aria-hidden="true">
+        <div class="lanes-axis-spacer"></div>
+        <div class="lane-years legend tabular">
+          {% for year in timeline.years %}<span class="lane-year" style="--left: {{ year.left }}">{{ year.year }}</span>{% endfor %}
+        </div>
+      </div>
+    </div>
+    <p class="mt-8 text-ink-soft">{{ t.journey.education }}</p>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- contact #}
+<section class="band bg-cap-red text-white" id="contato" aria-labelledby="contact-title">
+  <div class="band-inner grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
+    <div>
+      <h2 class="display-2 max-w-[18ch]" id="contact-title">{{ t.contact.title }}</h2>
+      <p class="lead mt-4">{{ t.contact.lead }}</p>
+    </div>
+    <div class="flex flex-col items-start gap-3">
+      <div class="flex flex-wrap gap-3">
+        <a class="key" href="{{ linkedin_url }}" rel="noopener me">{% icon "linkedin" 16 %}{{ t.contact.linkedin }}</a>
+        <a class="key" href="{{ github_url }}" rel="noopener me">{% icon "github" 16 %}{{ t.contact.github }}</a>
+        {% if contact_email %}<a class="key" href="mailto:{{ contact_email }}">{% icon "mail" 16 %}{{ t.contact.email }}</a>{% endif %}
+      </div>
+      <button class="key key-well" type="button" data-tone aria-pressed="false" hidden>
+        <span class="lamp" data-bus="data"></span>{% icon "wave" 16 %}{{ t.contact.tone }}
+      </button>
+      <p class="text-sm" data-tone-hint hidden>{{ t.contact.tone_hint }}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{{ stage_data|json_script:"stage-data" }}
+{% endblock %}

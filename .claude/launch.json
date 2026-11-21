@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "env",
+      "runtimeArgs": [
+        "DJANGO_DEBUG=1",
+        ".venv/bin/python",
+        "manage.py",
+        "runserver",
+        "8791"
+      ],
+      "port": 8791
+    },
+    {
+      "name": "review",
+      "runtimeExecutable": ".venv/bin/python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8792",
+        "--directory",
+        ".impeccable/review"
+      ],
+      "port": 8792
+    }
+  ]
+}

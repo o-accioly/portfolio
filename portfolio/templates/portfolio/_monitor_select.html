@@ -1,0 +1,14 @@
+{% comment %}
+  Monitor select: the five screen sizes as nested outlines at true relative scale.
+  The current one is solid, the others dashed. Context: devices, current_device, t.
+{% endcomment %}
+<div class="nest" role="group" aria-label="{{ t.devices.label }}">
+  {% for device in devices %}
+  <button class="nest-size" type="button" data-set-device="{{ device.key }}" data-label="{{ device.label }}"
+          aria-pressed="{% if device.key == current_device %}true{% else %}false{% endif %}"
+          aria-label="{{ device.label }}, {{ device.width }} × {{ device.height }}" title="{{ device.label }}"
+          style="--nw: {{ device.nest_w }}; --nh: {{ device.nest_h }}">
+    <span class="nest-tag tabular" aria-hidden="true">{{ device.width }}</span>
+  </button>
+  {% endfor %}
+</div>

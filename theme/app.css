@@ -1,0 +1,1567 @@
+/* Sala de Mixagem: the portfolio drawn as a studio console.
+   Tailwind v4 through the standalone CLI. Tokens first, then the console's own parts.
+   The built file lands in static/css/app.css, so font URLs are relative to that folder. */
+
+@import "tailwindcss";
+
+@source "../portfolio/templates";
+@source "../templates";
+@source "../static/js";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@font-face {
+  font-family: "Anybody";
+  src: url("../fonts/anybody-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 50% 150%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("../fonts/hanken-grotesk-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mynerve";
+  src: url("../fonts/mynerve.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------------- tokens */
+
+:root {
+  color-scheme: light dark;
+
+  /* Enamel faceplate: lights on / lights down. */
+  --face: light-dark(#bfccd4, #0d2a30);
+  --face-up: light-dark(#d3dde3, #143840);
+  --face-down: light-dark(#a9b9c3, #081d22);
+  --ink: light-dark(#0e1a22, #ece6d7);
+  --ink-soft: light-dark(#2b3f4c, #a7bcc0);
+  --groove-a: light-dark(rgb(14 26 34 / 0.34), rgb(0 0 0 / 0.7));
+  --groove-b: light-dark(rgb(255 255 255 / 0.62), rgb(255 255 255 / 0.07));
+
+  /* The monitor well stays dark under both lights: screens sit in it. */
+  --well: light-dark(#0b2026, #051316);
+  --well-up: light-dark(#143039, #0c2227);
+  --well-ink: #ece6d7;
+  --well-soft: #a3b8bd;
+  --well-groove: rgb(255 255 255 / 0.1);
+
+  /* Artist tape and marker. */
+  --tape: light-dark(#f5f1e7, #e6e1d3);
+  --tape-edge: light-dark(#e3dccb, #cfc8b6);
+  --marker: #15171a;
+
+  /* Cap colours: one per bus. */
+  --cap-red: #cf3a2b;
+  --cap-yellow: #efb22e;
+  --cap-cream: #f1ede3;
+  --cap-blue: #2f73bd;
+  --cap-green: #2f9e63;
+  --cap-orange: #e07a2c;
+
+  /* Device bodies. */
+  --dv-bezel: #0a0c0f;
+  --dv-glass: #05080a;
+  --dv-edge: #474f58;
+  --dv-back: #2a3037;
+  --dv-deck: #3a424b;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --morph: 900ms;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+@theme inline {
+  --font-display: "Anybody", "Arial Narrow", sans-serif;
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Mynerve", "Segoe Print", cursive;
+
+  --color-face: var(--face);
+  --color-face-up: var(--face-up);
+  --color-face-down: var(--face-down);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-well: var(--well);
+  --color-well-up: var(--well-up);
+  --color-well-ink: var(--well-ink);
+  --color-well-soft: var(--well-soft);
+  --color-tape: var(--tape);
+  --color-marker: var(--marker);
+  --color-cap-red: var(--cap-red);
+  --color-cap-yellow: var(--cap-yellow);
+  --color-cap-cream: var(--cap-cream);
+  --color-cap-blue: var(--cap-blue);
+  --color-cap-green: var(--cap-green);
+  --color-cap-orange: var(--cap-orange);
+}
+
+/* ---------------------------------------------------------------- base */
+
+@layer base {
+  html {
+    background: var(--face);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    line-height: 1.55;
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+    scrollbar-color: var(--ink-soft) var(--face-down);
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    min-height: 100svh;
+    overflow-x: clip;
+    background: var(--face);
+  }
+  ::selection {
+    background: var(--cap-yellow);
+    color: var(--marker);
+  }
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 0.08em;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+/* Cross-page travel: the monitor on one page becomes the monitor on the next. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-group(monitor) {
+  animation-duration: 600ms;
+  animation-timing-function: var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------- type */
+
+@utility display-1 {
+  font-family: var(--font-display);
+  /* Sized from the headline's length and the band's width, so it holds one line on a
+     desktop in every language. */
+  font-size: clamp(
+    2.125rem,
+    calc((min(100vw - 2 * var(--gutter), 96rem) - 1.5rem) / (var(--chars, 23) * 0.76)),
+    5.5rem
+  );
+  font-stretch: 122%;
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+}
+@utility display-2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 1.1rem + 2.7vw, 3.375rem);
+  font-stretch: 122%;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+@utility display-3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-stretch: 116%;
+  font-weight: 700;
+  line-height: 1.15;
+}
+/* Silk-screened panel legend. */
+@utility legend {
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-stretch: 118%;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+@utility lead {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  line-height: 1.55;
+  max-width: 62ch;
+}
+@utility hand {
+  font-family: var(--font-hand);
+  font-weight: 400;
+  line-height: 1;
+}
+@utility tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ---------------------------------------------------------------- layout */
+
+@utility band {
+  position: relative;
+  padding: clamp(3.5rem, 8vw, 7rem) var(--gutter);
+}
+@utility band-inner {
+  width: 100%;
+  max-width: 96rem;
+  margin-inline: auto;
+}
+/* An engraved line: a dark cut with a light lip under it. */
+@utility groove {
+  border-top: 1px solid var(--groove-a);
+  box-shadow: inset 0 1px 0 var(--groove-b);
+}
+@utility groove-b {
+  border-bottom: 1px solid var(--groove-a);
+  box-shadow: 0 1px 0 var(--groove-b);
+}
+
+@layer components {
+  /* ------------------------------------------------------------ keys */
+
+  .key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--groove-a);
+    border-radius: 5px;
+    background: var(--face-up);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-stretch: 116%;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 2px 3px -1px var(--groove-a), inset 0 1px 0 var(--groove-b);
+    transition: transform 140ms var(--ease-out), box-shadow 140ms var(--ease-out), background-color 200ms;
+  }
+  .key:hover {
+    background: color-mix(in oklab, var(--face-up) 82%, var(--ink) 18%);
+  }
+  .key:active,
+  .key[aria-pressed="true"],
+  .key[aria-current="true"] {
+    transform: translateY(1px);
+    box-shadow: 0 0 0 0 var(--groove-a), inset 0 2px 4px rgb(0 0 0 / 0.28);
+  }
+  .key-primary {
+    border-color: rgb(0 0 0 / 0.35);
+    background: var(--cap-red);
+    color: #fff;
+  }
+  .key-primary:hover {
+    background: color-mix(in oklab, var(--cap-red) 86%, #000 14%);
+  }
+  .key-well {
+    border-color: var(--well-groove);
+    background: var(--well-up);
+    color: var(--well-ink);
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 0.6), inset 0 1px 0 rgb(255 255 255 / 0.08);
+  }
+  .key-well:hover {
+    background: color-mix(in oklab, var(--well-up) 80%, var(--well-ink) 20%);
+  }
+  .key-small {
+    min-height: 2.25rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.6875rem;
+  }
+
+  /* A lamp: lit by its cap colour, and still drawn when it is off. */
+  .lamp {
+    --cap: var(--cap-red);
+    flex: none;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--cap) 18%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cap) 55%, transparent);
+    transition: background-color 200ms, box-shadow 200ms;
+  }
+  [aria-pressed="true"] > .lamp,
+  [aria-current="true"] > .lamp,
+  .lamp[data-on="true"] {
+    background: var(--cap);
+    box-shadow: 0 0 6px 1px color-mix(in oklab, var(--cap) 60%, transparent);
+  }
+  [data-bus="lang"] { --cap: var(--cap-red); }
+  [data-bus="data"] { --cap: var(--cap-yellow); }
+  [data-bus="ui"] { --cap: var(--cap-cream); }
+  [data-bus="ai"] { --cap: var(--cap-blue); }
+  [data-bus="infra"] { --cap: var(--cap-green); }
+  [data-bus="integ"] { --cap: var(--cap-orange); }
+
+  /* ------------------------------------------------------------ bridge (header) */
+
+  .bridge {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in oklab, var(--face) 92%, transparent);
+    backdrop-filter: blur(10px) saturate(1.2);
+    border-bottom: 1px solid var(--groove-a);
+    box-shadow: 0 1px 0 var(--groove-b);
+  }
+  .nameplate {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--groove-a);
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--face);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-stretch: 125%;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @media (max-width: 39.99rem) {
+    .bridge .key-small { padding-inline: 0.5rem; }
+    .nameplate { padding: 0.35rem 0.55rem; font-size: 0.75rem; letter-spacing: 0.04em; }
+  }
+  /* The plate carries two names: the author and his company. */
+  .nameplate-flip {
+    display: inline-grid;
+    overflow: hidden;
+    /* Room for descenders: the company name is not in capitals. */
+    margin-block: -0.2em;
+    padding-block: 0.2em;
+    line-height: 1.25;
+  }
+  .nameplate-flip > span {
+    grid-area: 1 / 1;
+  }
+  .nameplate-flip > span + span {
+    translate: 0 160%;
+    text-transform: none; /* the company writes its name "oAccioly Faz" */
+  }
+
+  /* ------------------------------------------------------------ wordmark (footer) */
+
+  .wordmark {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.1em 0.28em;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 1rem + 7vw, 6rem);
+    font-weight: 850;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--well-ink);
+  }
+  .wordmark-name {
+    display: inline-flex;
+    font-stretch: 150%;
+  }
+  .wordmark-name > span {
+    display: inline-block;
+  }
+  .wordmark-verb {
+    font-stretch: 150%;
+    color: var(--cap-yellow);
+  }
+  .wordmark-tape {
+    --tape-turn: -1.6deg;
+    padding: 0.18em 0.5em 0.24em;
+    font-size: 0.62em;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0.55rem 0;
+    height: 2px;
+    background: var(--cap-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms var(--ease-out);
+  }
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* ------------------------------------------------------------ monitor well */
+
+  .well {
+    position: relative;
+    background:
+      radial-gradient(120% 90% at 70% 40%, var(--well-up), transparent 60%),
+      var(--well);
+    color: var(--well-ink);
+  }
+  .well ::selection {
+    background: var(--cap-yellow);
+    color: var(--marker);
+  }
+
+  .rig {
+    container-type: inline-size;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 1.03;
+    margin-inline: auto;
+  }
+  @media (min-width: 64rem) {
+    /* Keep the monitor, its controls and the tape inside one screen. */
+    .rig { width: min(100%, max(26rem, calc((100svh - var(--hero-rest, 28.5rem)) * 1.94))); }
+  }
+  @media (min-width: 80rem) {
+    /* From here up the section links sit in the header's first row. */
+    .rig { --hero-rest: 25.5rem; }
+  }
+  .rig-cam {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    perspective: 210cqw;
+    perspective-origin: 50% 40%;
+  }
+  .dv-orbit {
+    transform-style: preserve-3d;
+  }
+  .dv-tilt {
+    transform-style: preserve-3d;
+    transform: rotateX(var(--px, 0deg)) rotateY(var(--py, 0deg));
+    will-change: transform;
+  }
+
+  /* One body that becomes five devices: only its numbers change. */
+  .dv {
+    --w: 53cqw;
+    --h: 33.125cqw;
+    --r: 1.1cqw;
+    --bz: 0.8cqw;
+    --t: 0.9cqw;
+    --tilt-x: -11deg;
+    --tilt-y: -17deg;
+    --lid: 17deg;
+    --lift: -8cqw;
+    --shift: 0cqw;
+    --stand: 0;
+    --deck: 0;
+    --deck-angle: 0deg;
+    --island: 0;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translate(var(--shift), var(--lift)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition: transform var(--morph) var(--ease-out);
+  }
+  .dv[data-device="ultrawide"] {
+    --w: 86cqw; --h: 36.28cqw; --r: 0.7cqw; --bz: 0.5cqw;
+    --tilt-x: -5deg; --tilt-y: -9deg; --lid: 3deg; --lift: -4.5cqw; --stand: 1;
+  }
+  .dv[data-device="desktop"] {
+    --w: 68cqw; --h: 38.25cqw; --r: 0.7cqw; --bz: 0.55cqw;
+    --tilt-x: -5deg; --tilt-y: -13deg; --lid: 3deg; --lift: -4.5cqw; --stand: 1;
+  }
+  .dv[data-device="laptop"] {
+    --deck: 1; --deck-angle: 90deg;
+  }
+  .dv[data-device="tablet"] {
+    --w: 31.5cqw; --h: 45.33cqw; --r: 2cqw; --bz: 1.25cqw;
+    --tilt-x: 3deg; --tilt-y: -21deg; --lid: 0deg; --lift: 0cqw;
+  }
+  .dv[data-device="phone"] {
+    --w: 21cqw; --h: 45.45cqw; --r: 3.1cqw; --bz: 0.75cqw;
+    --tilt-x: 3deg; --tilt-y: -23deg; --lid: 0deg; --lift: 0cqw; --island: 1;
+  }
+
+  .dv-lid {
+    position: relative;
+    width: var(--w);
+    height: var(--h);
+    padding: var(--bz);
+    border-radius: var(--r);
+    background: var(--dv-bezel);
+    transform-style: preserve-3d;
+    transform-origin: 50% 100%;
+    transform: rotateX(var(--lid));
+    transition:
+      width var(--morph) var(--ease-out),
+      height var(--morph) var(--ease-out),
+      padding var(--morph) var(--ease-out),
+      border-radius var(--morph) var(--ease-out),
+      transform var(--morph) var(--ease-out);
+  }
+  /* Thickness: stacked slices behind the face, so rounded corners extrude too. */
+  .dv-slice {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--dv-edge);
+    transform: translateZ(calc(var(--t) * var(--i) / -8));
+    pointer-events: none;
+  }
+  .dv-slice:nth-child(1) { --i: 1; }
+  .dv-slice:nth-child(2) { --i: 2; }
+  .dv-slice:nth-child(3) { --i: 3; }
+  .dv-slice:nth-child(4) { --i: 4; }
+  .dv-slice:nth-child(5) { --i: 5; }
+  .dv-slice:nth-child(6) { --i: 6; }
+  .dv-slice:nth-child(7) { --i: 7; }
+  .dv-slice:nth-child(8) { --i: 8; background: var(--dv-back); }
+
+  .dv-screen {
+    container-type: inline-size;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: max(0px, calc(var(--r) - var(--bz)));
+    background: var(--dv-glass);
+    transform: translateZ(0.5px);
+    transition: border-radius var(--morph) var(--ease-out);
+  }
+  .dv-shot {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+  }
+  .dv-shot[data-leaving],
+  .dv-shot[data-entering] {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  /* Navigation inside one site: the next page arrives from the right. */
+  .dv-shot {
+    transition: opacity 500ms var(--ease-out), filter 500ms var(--ease-out), translate 500ms var(--ease-out);
+  }
+  .dv-shot[data-entering="nav"] { translate: 7% 0; filter: none; }
+  .dv-shot[data-leaving="nav"] { translate: -7% 0; filter: none; }
+  /* A loading line across the top of the screen, just before the next page. */
+  .dv-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    z-index: 2;
+    width: 100%;
+    height: max(2px, 0.6cqw);
+    background: var(--cap-yellow);
+    transform-origin: left;
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  .dv-screen[data-loading]::before {
+    opacity: 1;
+    transform: scaleX(1);
+    transition: transform 420ms var(--ease-in-out);
+  }
+  @keyframes pan-once {
+    0%, 12% { transform: translateY(0); }
+    88%, 100% { transform: translateY(var(--pan, 0%)); }
+  }
+  @keyframes pan {
+    0%, 10% { transform: translateY(0); }
+    90%, 100% { transform: translateY(var(--pan, 0%)); }
+  }
+  /* Glass: one soft highlight, so the screen reads as a surface. */
+  .dv-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(112deg, rgb(255 255 255 / 0.09), transparent 32%);
+    pointer-events: none;
+  }
+  .dv-island {
+    position: absolute;
+    top: calc(var(--bz) + 1.1cqw);
+    left: 50%;
+    width: 5.6cqw;
+    height: 1.5cqw;
+    margin-left: -2.8cqw;
+    border-radius: 1cqw;
+    background: var(--dv-glass);
+    opacity: var(--island);
+    transform: translateZ(1px) scale(calc(0.6 + var(--island) * 0.4));
+    transition: opacity 400ms var(--ease-out), transform var(--morph) var(--ease-out);
+  }
+
+  .dv-neck,
+  .dv-foot,
+  .dv-deck {
+    position: absolute;
+    left: 50%;
+    transition: transform var(--morph) var(--ease-out), opacity 500ms var(--ease-out), width var(--morph) var(--ease-out), height var(--morph) var(--ease-out);
+  }
+  .dv-neck {
+    top: calc(100% - 1cqw);
+    width: 8cqw;
+    height: 8cqw;
+    margin-left: -4cqw;
+    background: linear-gradient(90deg, var(--dv-back), var(--dv-edge) 45%, var(--dv-back));
+    opacity: var(--stand);
+    transform-origin: 50% 0;
+    transform: translateZ(calc(var(--t) * -1.6)) scaleY(var(--stand));
+  }
+  .dv-foot {
+    top: calc(100% + 7cqw);
+    width: 26cqw;
+    height: 13cqw;
+    margin-left: -13cqw;
+    border-radius: 1.2cqw;
+    background: linear-gradient(var(--dv-back), var(--dv-edge));
+    opacity: var(--stand);
+    transform-origin: 50% 0;
+    transform: translateZ(calc(var(--t) * -1.6 - 6.5cqw)) rotateX(90deg) scale(calc(0.4 + var(--stand) * 0.6));
+  }
+  .dv-deck {
+    top: 100%;
+    width: calc(var(--w) * 1.035);
+    height: calc(var(--w) * 0.62);
+    margin-left: calc(var(--w) * -0.5175);
+    border-radius: 0.5cqw 0.5cqw 1.8cqw 1.8cqw;
+    background: linear-gradient(var(--dv-deck), color-mix(in oklab, var(--dv-deck) 78%, #fff 22%));
+    opacity: var(--deck);
+    transform-origin: 50% 0;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--deck-angle)) scaleY(calc(0.2 + var(--deck) * 0.8));
+  }
+  .dv-deck::before {
+    /* keyboard well */
+    content: "";
+    position: absolute;
+    inset: 7% 6% 44%;
+    border-radius: 0.5cqw;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 6.4%, var(--dv-deck) 6.4% 7.14%),
+      repeating-linear-gradient(0deg, transparent 0 17%, var(--dv-deck) 17% 20%),
+      #14181c;
+  }
+  .dv-deck::after {
+    /* trackpad */
+    content: "";
+    position: absolute;
+    inset: 64% 34% 8%;
+    border-radius: 0.6cqw;
+    background: color-mix(in oklab, var(--dv-deck) 80%, #000 20%);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06);
+  }
+  .dv-floor {
+    position: absolute;
+    left: 50%;
+    bottom: 3.5cqw;
+    width: calc(var(--w, 53cqw) * 1.15);
+    height: 6cqw;
+    translate: -50% 0;
+    background: radial-gradient(closest-side, rgb(0 0 0 / 0.6), transparent);
+    filter: blur(1.4cqw);
+    transition: width var(--morph) var(--ease-out);
+    pointer-events: none;
+  }
+  .rig[data-device="ultrawide"] .dv-floor { --w: 86cqw; }
+  .rig[data-device="desktop"] .dv-floor { --w: 68cqw; }
+  .rig[data-device="tablet"] .dv-floor { --w: 31.5cqw; }
+  .rig[data-device="phone"] .dv-floor { --w: 21cqw; }
+
+  @media (max-width: 47.99rem) {
+    .rig { aspect-ratio: 1 / 0.92; }
+    .dv { --w: 68cqw; --h: 42.5cqw; --lift: -15cqw; --shift: 5cqw; }
+    .dv[data-device="ultrawide"] { --w: 92cqw; --h: 38.8cqw; --lift: -9cqw; --shift: 0cqw; }
+    .dv[data-device="desktop"] { --w: 84cqw; --h: 47.25cqw; --lift: -9cqw; --shift: 0cqw; }
+    .dv[data-device="tablet"] { --w: 56cqw; --h: 80.6cqw; --lift: 0cqw; --shift: 0cqw; }
+    .dv[data-device="phone"] { --w: 38cqw; --h: 82.2cqw; --lift: 0cqw; --shift: 0cqw; }
+    .rig[data-device="ultrawide"] .dv-floor { --w: 92cqw; }
+    .rig[data-device="desktop"] .dv-floor { --w: 84cqw; }
+    .rig[data-device="tablet"] .dv-floor { --w: 56cqw; }
+    .rig[data-device="phone"] .dv-floor { --w: 38cqw; }
+    .dv-floor { --w: 68cqw; }
+  }
+
+  /* Illustration shown when a product has no public page to capture. */
+  .dv-states {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    gap: 3.2cqw;
+    padding: 8cqw;
+    background: #0b1318;
+    color: var(--well-ink);
+  }
+  .dv-states[hidden] { display: none; }
+  .dv-states-title {
+    font-family: var(--font-hand);
+    font-size: clamp(1rem, 9cqw, 4rem);
+    line-height: 1;
+  }
+  .dv-state {
+    display: flex;
+    align-items: center;
+    gap: 2.4cqw;
+    font-family: var(--font-display);
+    font-size: clamp(0.5rem, 3.6cqw, 1.5rem);
+    font-stretch: 118%;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .dv-state .lamp {
+    --cap: var(--cap-green);
+    width: 2.6cqw;
+    height: 2.6cqw;
+    min-width: 6px;
+    min-height: 6px;
+  }
+  .dv-states-note {
+    font-size: clamp(0.5rem, 2.6cqw, 0.875rem);
+    color: var(--well-soft);
+  }
+
+  /* Monitor select: the five screen sizes as nested outlines, at true relative scale.
+     Each outline is a key; the one on the monitor is solid, the others dashed. */
+  .nest {
+    position: relative;
+    width: 100%;
+    max-width: 21rem;
+    aspect-ratio: 2560 / 1180;
+  }
+  .nest-size {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: var(--nw);
+    height: var(--nh);
+    border: 1px dashed color-mix(in oklab, var(--well-ink) 50%, transparent);
+    border-radius: 3px;
+    background: var(--well);
+    color: var(--well-soft);
+    cursor: pointer;
+    transition: border-color 200ms, background-color 200ms, color 200ms;
+  }
+  .nest-size:hover {
+    border-style: solid;
+    border-color: var(--well-ink);
+    color: var(--well-ink);
+  }
+  .nest-size[aria-pressed="true"] {
+    border: 2px solid var(--cap-yellow);
+    background: color-mix(in oklab, var(--cap-yellow) 16%, var(--well));
+    color: var(--well-ink);
+  }
+  .nest-size:disabled {
+    border-style: dotted;
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .nest-tag {
+    position: absolute;
+    right: 0.3rem;
+    bottom: 0.2rem;
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-stretch: 110%;
+    font-weight: 650;
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+
+  /* ------------------------------------------------------------ tape */
+
+  .tape {
+    display: inline-block;
+    padding: 0.3em 0.75em 0.36em;
+    background: var(--tape);
+    color: var(--marker);
+    font-family: var(--font-hand);
+    line-height: 1.05;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.28);
+    transform: rotate(var(--tape-turn, -0.7deg));
+  }
+  .tape-strip {
+    position: relative;
+    z-index: 2;
+    margin-inline: calc(var(--gutter) * -1 - 1rem);
+    padding: 0.5rem calc(var(--gutter) + 1rem);
+    background: var(--tape);
+    border-block: 1px solid var(--tape-edge);
+    box-shadow: 0 3px 8px -2px rgb(0 0 0 / 0.45);
+    transform: rotate(-0.45deg);
+  }
+  .tape-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: clamp(0.25rem, 0.75vw, 1.25rem);
+    row-gap: 0;
+  }
+  .tape-name {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.2rem 0.3rem;
+    border: 0;
+    background: none;
+    color: var(--marker);
+    font-family: var(--font-hand);
+    font-size: clamp(1.2rem, 0.72rem + 0.63vw, 1.6rem);
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tape-name::after {
+    /* a marker stroke under the name on the monitor */
+    content: "";
+    position: absolute;
+    inset: auto 0.2rem 0.2rem;
+    height: 0.5rem;
+    background: no-repeat center / 100% 100%
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6c18-4 30 3 48-1s34-3 68 1' fill='none' stroke='%23cf3a2b' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 420ms var(--ease-out);
+  }
+  .tape-name:hover::after {
+    clip-path: inset(0 55% 0 0);
+  }
+  .tape-name[aria-pressed="true"]::after {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* ------------------------------------------------------------ channel strips */
+
+  .strips {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid var(--groove-a);
+    border-left: 1px solid var(--groove-a);
+  }
+  .strip {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.5rem 1.15rem 1.4rem;
+    border-right: 1px solid var(--groove-a);
+    border-bottom: 1px solid var(--groove-a);
+    box-shadow: inset -1px 0 0 var(--groove-b), inset 0 -1px 0 var(--groove-b);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 300ms;
+    container-type: inline-size; /* the tape label scales with the strip, not the window */
+  }
+  .strip .tape {
+    font-size: clamp(1.2rem, 11cqi, 1.625rem);
+  }
+  @media (min-width: 90rem) {
+    /* six narrow channels: eleven projects close in two rows with one spare slot */
+    .strips { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  }
+  .strip:hover,
+  .strip:focus-visible {
+    background: var(--face-up);
+  }
+  .strip .handset {
+    transition: transform 500ms var(--ease-out);
+  }
+  .strip:hover .handset,
+  .strip:focus-visible .handset {
+    transform: perspective(42rem) translateY(-8px) rotateY(-16deg) rotateX(5deg);
+  }
+  .handset {
+    position: relative;
+    width: min(100%, 10.5rem);
+    aspect-ratio: 390 / 800;
+    margin-inline: auto;
+    padding: 0.3rem;
+    border-radius: 1.3rem;
+    background: var(--dv-bezel);
+    box-shadow: 0 14px 22px -12px rgb(0 0 0 / 0.55), 0 2px 0 var(--dv-edge);
+  }
+  .handset-screen {
+    container-type: inline-size;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 1.05rem;
+    background: var(--dv-glass);
+  }
+  .handset-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .handset-screen .dv-states {
+    gap: 5cqw;
+    padding: 12cqw 10cqw;
+  }
+  .handset-screen .dv-state { font-size: clamp(0.5rem, 6.4cqw, 0.75rem); letter-spacing: 0.04em; }
+  .handset-screen .dv-state .lamp { width: 4.5cqw; height: 4.5cqw; }
+  .handset-screen .dv-states-note { font-size: clamp(0.5rem, 6cqw, 0.6875rem); line-height: 1.3; }
+
+  /* A channel's meter bridge: one LED ladder per bus, lit by how many of the product's
+     technologies sit on it. Unlit cells are drawn. */
+  .meters {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .meter {
+    display: grid;
+    grid-auto-rows: 0.3rem;
+    gap: 2px;
+    width: 0.8rem;
+  }
+  .meter i {
+    border-radius: 1px;
+    background: color-mix(in oklab, var(--cap) 20%, var(--face-down));
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 16%, transparent);
+  }
+  .meter i[data-on="true"] {
+    background: var(--cap);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.28);
+  }
+
+  /* The channel fader opens the project: its cap travels as the strip is hovered. */
+  .fader {
+    display: grid;
+    gap: 0.55rem;
+    padding-top: 0.5rem;
+  }
+  .fader-track {
+    position: relative;
+    height: 0.375rem;
+    border-radius: 2px;
+    background: var(--face-down);
+    box-shadow: inset 0 1px 2px var(--groove-a), 0 1px 0 var(--groove-b);
+  }
+  .fader-cap {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1.75rem;
+    height: 1.125rem;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent 46%, rgb(255 255 255 / 0.85) 46% 54%, transparent 54%), var(--cap-red);
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 0.5), inset 0 0 0 1px rgb(0 0 0 / 0.3);
+    translate: 0 -50%;
+    transition: left 520ms var(--ease-out);
+  }
+  .strip:hover .fader-cap,
+  .strip:focus-visible .fader-cap {
+    left: calc(100% - 1.75rem);
+  }
+
+  @media (max-width: 74.99rem) {
+    .strips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .strip {
+      display: grid;
+      grid-template-columns: 5.5rem minmax(0, 1fr);
+      align-content: start;
+      column-gap: 1rem;
+      row-gap: 0.5rem;
+    }
+    .strip .handset { grid-row: span 5; width: 100%; margin: 0; border-radius: 0.9rem; }
+    .strip .handset-screen { border-radius: 0.7rem; }
+    .strip .fader { align-self: end; }
+  }
+  @media (max-width: 47.99rem) {
+    .strips { grid-template-columns: minmax(0, 1fr); border-left: 0; }
+    .strip { padding: 1.1rem 0; border-right: 0; box-shadow: inset 0 -1px 0 var(--groove-b); }
+  }
+
+  /* ------------------------------------------------------------ routing matrix */
+
+  .matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: 2rem clamp(1.5rem, 3vw, 3rem);
+  }
+  .mx-head,
+  .mx-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(var(--cols, 6), 1.125rem);
+    align-items: center;
+    column-gap: 0.1875rem;
+  }
+  .mx-head {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--groove-a);
+    box-shadow: 0 1px 0 var(--groove-b);
+  }
+  .mx-code {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.5625rem;
+    font-stretch: 90%;
+    font-weight: 650;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    transition: color 200ms;
+  }
+  .mx-row {
+    min-height: 2rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--groove-a) 45%, transparent);
+    transition: opacity 320ms var(--ease-out);
+  }
+  .mx-label {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+  .mx-cell {
+    justify-self: center;
+    width: 0.8125rem;
+    height: 0.8125rem;
+    border-radius: 3px;
+    background: color-mix(in oklab, var(--ink) 7%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 22%, transparent);
+    transition: background-color 260ms, box-shadow 260ms, transform 320ms var(--ease-out);
+  }
+  .mx-cell[data-on="true"] {
+    background: var(--cap);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.28);
+  }
+  /* Solo: the other columns step back, rows outside the mix become ghosts. */
+  .matrix[data-solo] .mx-cell[data-on="true"]:not([data-solo-cell]) {
+    background: color-mix(in oklab, var(--cap) 30%, var(--face-up));
+  }
+  .matrix[data-solo] .mx-cell[data-solo-cell][data-on="true"] {
+    transform: scale(1.3);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.3), 0 0 8px color-mix(in oklab, var(--cap) 70%, transparent);
+  }
+  .matrix[data-solo] .mx-row[data-ghost] .mx-label {
+    opacity: 0.42;
+  }
+  .matrix[data-solo] .mx-code[data-solo-cell] {
+    color: var(--ink);
+  }
+
+  .scene {
+    display: grid;
+    grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+  }
+  .scene-screen {
+    container-type: inline-size;
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 0.3rem solid var(--dv-bezel);
+    border-radius: 0.5rem;
+    background: var(--dv-glass);
+    box-shadow: 0 10px 18px -10px rgb(0 0 0 / 0.5);
+  }
+  .scene-screen .dv-states {
+    gap: 4cqw;
+    padding: 9cqw 10cqw;
+  }
+  .scene-screen .dv-state { font-size: clamp(0.5rem, 5.4cqw, 1rem); }
+  .scene-screen .dv-state .lamp { width: 4cqw; height: 4cqw; }
+  .scene-screen img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: opacity 400ms var(--ease-out);
+  }
+
+  /* ------------------------------------------------------------ patch bay (process) */
+
+  .patch-jacks {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--steps, 6), minmax(0, 1fr));
+  }
+  .patch-cable {
+    position: absolute;
+    top: 0.625rem;
+    left: 0.6875rem;
+    right: 0;
+    height: 2.5px;
+    background: color-mix(in oklab, var(--well-soft) 35%, transparent);
+  }
+  .patch-signal {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: calc(var(--at, 0) / var(--steps, 6) * 100%);
+    background: var(--cap-yellow);
+    transition: width 620ms var(--ease-out);
+  }
+  .patch-jack {
+    position: relative;
+    display: grid;
+    justify-items: start;
+    gap: 0.6rem;
+    padding: 0 0.75rem 0.75rem 0;
+    border: 0;
+    background: none;
+    color: var(--well-soft);
+    text-align: left;
+    cursor: pointer;
+    transition: color 240ms;
+  }
+  .patch-jack:hover,
+  .patch-jack[aria-selected="true"] {
+    color: var(--well-ink);
+  }
+  .chain-jack {
+    display: block;
+    width: 1.375rem;
+    height: 1.375rem;
+    border-radius: 50%;
+    background: var(--well);
+    box-shadow: inset 0 0 0 2px var(--well-soft), inset 0 0 0 6px var(--well),
+      inset 0 0 0 11px color-mix(in oklab, var(--cap-yellow) 22%, var(--well));
+    transition: box-shadow 320ms, scale 320ms var(--ease-out);
+  }
+  .patch-jack[data-lit] .chain-jack,
+  .patch:not([data-ready]) .chain-jack {
+    box-shadow: inset 0 0 0 2px var(--well-soft), inset 0 0 0 6px var(--well), inset 0 0 0 11px var(--cap-yellow);
+  }
+  .patch-jack[aria-selected="true"] .chain-jack {
+    scale: 1.25;
+    box-shadow: inset 0 0 0 2px var(--well-ink), inset 0 0 0 6px var(--well), inset 0 0 0 11px var(--cap-yellow);
+  }
+  .patch-panels {
+    margin-top: 2.5rem;
+  }
+  .patch-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 1rem clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--well-groove);
+  }
+  /* Once the script is in, the bay shows one stage at a time. */
+  .patch[data-ready] .patch-panel {
+    min-height: 11rem;
+    padding-block: 0;
+    border-top: 0;
+  }
+  .patch[data-ready] .patch-panel:not([data-active]) {
+    display: none;
+  }
+  @media (max-width: 63.99rem) {
+    .patch-panel { grid-template-columns: minmax(0, 1fr); }
+    .patch[data-ready] .patch-panel { min-height: 15rem; }
+    /* The cable still runs through all six jacks; only the chosen stage keeps its name. */
+    .patch[data-ready] .patch-jacks { padding-bottom: 1.9rem; }
+    .patch[data-ready] .patch-jack { padding: 0 0 0.75rem; }
+    .patch[data-ready] .patch-jack .legend {
+      position: absolute;
+      top: 2.25rem;
+      left: 0;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .patch[data-ready] .patch-jack[aria-selected="true"] .legend { opacity: 1; }
+    .patch[data-ready] .patch-jack:nth-last-child(-n + 2) .legend { left: auto; right: 0.75rem; }
+    /* Without the script every stage is listed below, so the jacks keep their names. */
+    .patch:not([data-ready]) .patch-jacks { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1rem; }
+    .patch:not([data-ready]) .patch-cable { display: none; }
+  }
+
+  /* ------------------------------------------------------------ session lanes */
+
+  .lanes {
+    position: relative;
+    display: grid;
+    row-gap: 0.75rem;
+  }
+  .lane {
+    display: grid;
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-items: center;
+  }
+  .lane-track {
+    position: relative;
+    height: 2.5rem;
+    background:
+      repeating-linear-gradient(90deg, var(--groove-a) 0 1px, transparent 1px var(--year, 10%)),
+      color-mix(in oklab, var(--face-down) 60%, transparent);
+  }
+  .lane-region {
+    position: absolute;
+    top: 0.3rem;
+    bottom: 0.3rem;
+    left: var(--left);
+    width: var(--width);
+    min-width: 0.5rem;
+    border-radius: 3px;
+    background: var(--cap);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.25);
+    transform-origin: left;
+  }
+  .lane-region[data-running="true"] {
+    border-radius: 3px 0 0 3px;
+    background: linear-gradient(90deg, var(--cap) calc(100% - 1.25rem), color-mix(in oklab, var(--cap) 55%, transparent));
+  }
+  .lane-years {
+    position: relative;
+    height: 1.5rem;
+  }
+  .lane-year {
+    position: absolute;
+    left: var(--left);
+    top: 0;
+    padding-left: 0.3rem;
+    border-left: 1px solid var(--groove-a);
+    color: var(--ink-soft);
+  }
+  .playhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 2px;
+    background: var(--cap-red);
+    pointer-events: none;
+  }
+  @media (max-width: 47.99rem) {
+    .lane { grid-template-columns: minmax(0, 1fr); row-gap: 0.35rem; }
+    .lane-year:nth-child(even) { visibility: hidden; }
+    .lanes-axis-spacer { display: none; }
+  }
+
+  /* ------------------------------------------------------------ rack (project layers) */
+
+  .rack {
+    perspective: 1600px;
+  }
+  .rack-frame {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    background: var(--well);
+    transform-style: preserve-3d;
+    transform: rotateY(-7deg) rotateX(2deg);
+    transform-origin: 0 50%;
+    box-shadow: 30px 30px 50px -30px rgb(0 0 0 / 0.5);
+  }
+  .rack-unit {
+    position: relative;
+    border-radius: 3px;
+    background: var(--face-up);
+    color: var(--ink);
+    box-shadow: inset 0 1px 0 var(--groove-b), inset 0 -1px 0 var(--groove-a), 0 2px 3px rgb(0 0 0 / 0.35);
+    transform-style: preserve-3d;
+    transition: transform 520ms var(--ease-out), box-shadow 520ms var(--ease-out);
+  }
+  .rack-unit[open],
+  .rack-unit:hover {
+    transform: translateZ(28px);
+    box-shadow: inset 0 1px 0 var(--groove-b), inset 0 -1px 0 var(--groove-a), 0 16px 22px -8px rgb(0 0 0 / 0.55);
+  }
+  .rack-unit > summary {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(9rem, 15rem) minmax(0, 1fr) 1.25rem;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    min-height: 4rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .rack-unit > summary::-webkit-details-marker { display: none; }
+  .rack-screw {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    background: var(--face-down);
+    box-shadow: inset 0 0 0 1px var(--groove-a);
+  }
+  .rack-parts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+  }
+  .rack-part {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .rack-part .lamp { --cap: var(--cap-green); }
+  .rack-unit[open] .rack-part .lamp {
+    background: var(--cap);
+    box-shadow: 0 0 6px 1px color-mix(in oklab, var(--cap) 60%, transparent);
+  }
+  .rack-chevron {
+    transition: transform 320ms var(--ease-out);
+  }
+  .rack-unit[open] .rack-chevron {
+    transform: rotate(90deg);
+  }
+  .rack-note {
+    padding: 0 1rem 1rem 3.25rem;
+    max-width: 70ch;
+  }
+  @media (max-width: 47.99rem) {
+    .rack-frame { transform: none; padding: 0.5rem; }
+    .rack-unit[open], .rack-unit:hover { transform: none; }
+    .rack-unit > summary { grid-template-columns: minmax(0, 1fr) 1.25rem; }
+    .rack-unit .rack-screw { display: none; }
+    .rack-unit summary > .display-3 { grid-column: 1; grid-row: 1; }
+    .rack-unit .rack-chevron { grid-column: 2; grid-row: 1; }
+    .rack-unit .rack-parts { grid-column: 1 / -1; grid-row: 2; }
+    .rack-note { padding-left: 1rem; }
+  }
+
+  /* ------------------------------------------------------------ inside (the product's own screens) */
+
+  .inside {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+    gap: 2.5rem clamp(1.5rem, 3vw, 3rem);
+  }
+  .inside-frame {
+    overflow: hidden;
+    border: 0.45rem solid var(--dv-bezel);
+    border-radius: 0.7rem;
+    background: var(--dv-glass);
+    box-shadow: 0 22px 34px -22px rgb(0 0 0 / 0.6), 0 2px 0 var(--dv-edge);
+  }
+  .inside-frame > * {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ------------------------------------------------------------ fact sheet */
+
+  .facts {
+    display: grid;
+    border-top: 1px solid var(--groove-a);
+  }
+  .facts > div {
+    display: grid;
+    grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--groove-a);
+    box-shadow: 0 1px 0 var(--groove-b);
+  }
+
+  .icon { flex: none; }
+}
+
+/* ---------------------------------------------------------------- motion
+   Everything is visible without these rules. They only run for visitors who have not
+   asked for less motion, and only once scripts are in (`.js` on <html>). */
+
+@media (prefers-reduced-motion: no-preference) {
+  .dv-shot {
+    animation: pan var(--pan-dur, 24s) var(--ease-in-out) infinite alternate;
+  }
+  /* A site with more than one captured page scrolls once, then moves to the next page. */
+  .dv-screen[data-pages] .dv-shot {
+    animation: pan-once var(--pan-dur, 16s) var(--ease-in-out) 1 both;
+  }
+  [data-paused] .dv-shot,
+  .dv-screen:hover .dv-shot {
+    animation-play-state: paused;
+  }
+
+  /* The camera drifts around the monitor as the well scrolls through the screen. */
+  @supports (animation-timeline: view()) {
+    .dv-orbit {
+      animation: orbit linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    @keyframes orbit {
+      from { transform: rotateY(9deg) rotateX(-3deg); }
+      to { transform: rotateY(-9deg) rotateX(4deg); }
+    }
+  }
+
+  /* Power-on: the monitor comes up, the tape gets written, lamps run a test. */
+  .js .rig-cam {
+    animation: power-on 1100ms var(--ease-out) both;
+  }
+  @keyframes power-on {
+    from { opacity: 0; transform: translateY(2.5rem) scale(0.96); filter: blur(10px); }
+  }
+  .js .tape-strip {
+    animation: tape-on 900ms var(--ease-out) 150ms both;
+  }
+  @keyframes tape-on {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+  .js .tape-name {
+    animation: write 520ms var(--ease-out) both;
+    animation-delay: calc(450ms + var(--n, 0) * 90ms);
+  }
+  @keyframes write {
+    from { clip-path: inset(0 100% 0 0); opacity: 0.2; }
+    to { clip-path: inset(-20% -5% -20% -5%); opacity: 1; }
+  }
+
+  .js [data-reveal="lamps"] .mx-cell {
+    scale: 0.4;
+    opacity: 0;
+    transition: scale 420ms var(--ease-out), opacity 300ms, background-color 260ms, box-shadow 260ms, transform 320ms var(--ease-out);
+    transition-delay: calc(var(--col, 0) * 45ms + var(--row, 0) * 18ms);
+  }
+  .js [data-reveal="lamps"].is-in .mx-cell {
+    scale: 1;
+    opacity: 1;
+  }
+
+  /* The plate turns from the author's name to the company's and back, three times. */
+  .nameplate-flip > span {
+    animation: plate-a 7s var(--ease-in-out) 1.2s 3 both;
+  }
+  .nameplate-flip > span + span {
+    animation-name: plate-b;
+  }
+  @keyframes plate-a {
+    0%, 42% { translate: 0 0; }
+    50%, 92% { translate: 0 -160%; }
+    100% { translate: 0 0; }
+  }
+  @keyframes plate-b {
+    0%, 42% { translate: 0 160%; }
+    50%, 92% { translate: 0 0; }
+    100% { translate: 0 160%; }
+  }
+
+  /* Wordmark: the letters widen one after the other, like faders coming up. */
+  .js [data-reveal="wordmark"] .wordmark-name > span {
+    font-stretch: 55%;
+    transition: font-stretch 900ms var(--ease-out);
+    transition-delay: calc(var(--n, 0) * 70ms);
+  }
+  .js [data-reveal="wordmark"].is-in .wordmark-name > span {
+    font-stretch: 150%;
+  }
+  .wordmark-tape.is-writing {
+    animation: write 520ms var(--ease-out) both;
+  }
+
+  /* Meters come up in steps, bottom cell first. */
+  .js [data-reveal="meters"] .meter i[data-on="true"] {
+    background: color-mix(in oklab, var(--cap) 20%, var(--face-down));
+    transition: background-color 90ms steps(1);
+    transition-delay: calc(var(--k, 0) * 110ms + 200ms);
+  }
+  .js [data-reveal="meters"].is-in .meter i[data-on="true"] {
+    background: var(--cap);
+  }
+  .meter i:nth-last-child(1) { --k: 0; }
+  .meter i:nth-last-child(2) { --k: 1; }
+  .meter i:nth-last-child(3) { --k: 2; }
+  .meter i:nth-last-child(4) { --k: 3; }
+  .meter i:nth-last-child(5) { --k: 4; }
+
+  .patch[data-ready] .patch-panel[data-active] > * {
+    animation: patch-in 520ms var(--ease-out) both;
+  }
+  .patch[data-ready] .patch-panel[data-active] > :nth-child(2) {
+    animation-delay: 90ms;
+  }
+  @keyframes patch-in {
+    from { opacity: 0; translate: 1.5rem 0; filter: blur(6px); }
+  }
+
+  .js [data-reveal="lanes"] .lane-region {
+    scale: 0 1;
+    transition: scale 1100ms var(--ease-out);
+    transition-delay: calc(var(--n, 0) * 90ms);
+  }
+  .js [data-reveal="lanes"].is-in .lane-region {
+    scale: 1 1;
+  }
+  .js [data-reveal="lanes"] .playhead {
+    right: 100%;
+    transition: right 1700ms var(--ease-in-out);
+  }
+  .js [data-reveal="lanes"].is-in .playhead {
+    right: 0;
+  }
+
+  .dv-state .lamp {
+    animation: state-on 6s steps(1) 2 both;
+    animation-delay: calc(var(--n, 0) * 0.9s);
+  }
+  @keyframes state-on {
+    0% { background: color-mix(in oklab, var(--cap) 18%, transparent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cap) 55%, transparent); }
+    15%, 100% { background: var(--cap); box-shadow: 0 0 6px 1px color-mix(in oklab, var(--cap) 60%, transparent); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Every state change is immediate, including hover and press. */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .dv-state .lamp {
+    background: var(--cap);
+  }
+}
+
+@media (forced-colors: active) {
+  .lamp,
+  .mx-cell {
+    forced-color-adjust: none;
+  }
+}

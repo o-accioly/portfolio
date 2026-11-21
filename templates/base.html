@@ -1,0 +1,97 @@
+{% load static tailwind_cli console %}<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ t.meta.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ t.meta.description }}{% endblock %}">
+  <meta name="author" content="{{ author }}">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#bfccd4">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d2a30">
+  <link rel="canonical" href="{{ site_url }}{{ request.path }}">
+  {% for language in languages %}<link rel="alternate" hreflang="{{ language.code }}" href="{{ site_url }}{{ language.url }}">
+  {% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site_url }}/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ brand }}">
+  <meta property="og:title" content="{% block og_title %}{{ t.meta.title }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ t.meta.description }}{% endblock %}">
+  <meta property="og:url" content="{{ site_url }}{{ request.path }}">
+  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml">
+  <link rel="preload" href="{% static 'fonts/anybody-var.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{% static 'fonts/hanken-grotesk-var.woff2' %}" as="font" type="font/woff2" crossorigin>
+  {# Before first paint: mark scripts as available and apply a stored light choice. #}
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.replace("no-js", "js");
+      try {
+        var stored = localStorage.getItem("studio-light");
+        if (stored === "light" || stored === "dark") root.dataset.theme = stored;
+      } catch (error) {}
+    })();
+  </script>
+  {% tailwind_css %}
+  <script type="module" src="{% static 'js/app.js' %}"></script>
+</head>
+<body>
+  <a class="key key-primary sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50" href="#main">{{ t.nav.skip }}</a>
+
+  <header class="bridge">
+    <div class="band-inner flex h-14 items-center gap-2 px-(--gutter) sm:gap-3 lg:gap-8">
+      <a class="nameplate" href="{% url 'portfolio:home' %}" aria-label="{{ author }}, {{ brand }}">
+        <span class="nameplate-flip" aria-hidden="true"><span>{{ author }}</span><span>{{ brand }}</span></span>
+      </a>
+
+      <nav class="legend ml-auto hidden items-center gap-7 xl:flex" aria-label="{{ t.nav.label }}">
+        {% include "portfolio/_nav_links.html" %}
+      </nav>
+
+      <div class="ml-auto flex items-center gap-1 sm:gap-1.5 xl:ml-0">
+        <div class="flex items-center gap-1" role="group" aria-label="{{ t.nav.language }}">
+          {% for language in languages %}
+          <a class="key key-small" href="{{ language.url }}" hreflang="{{ language.code }}" lang="{{ language.code }}"
+             title="{{ language.name }}"{% if language.current %} aria-current="true"{% endif %}>
+            <span class="lamp max-sm:hidden" data-bus="infra"></span>{{ language.short }}
+          </a>
+          {% endfor %}
+        </div>
+        <button class="key key-small" type="button" data-light
+                data-label-auto="{{ t.theme.auto }}" data-label-light="{{ t.theme.light }}" data-label-dark="{{ t.theme.dark }}"
+                aria-label="{{ t.theme.label }}: {{ t.theme.auto }}" data-aria="{{ t.theme.label }}">
+          {% icon "lamp" 16 %}<span class="hidden sm:inline" data-light-text>{{ t.theme.auto }}</span>
+        </button>
+      </div>
+    </div>
+    <nav class="legend flex items-center gap-6 overflow-x-auto border-t border-(--groove-a) px-(--gutter) xl:hidden" aria-label="{{ t.nav.label }}">
+      {% include "portfolio/_nav_links.html" %}
+    </nav>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="well px-(--gutter) pt-16 pb-8 lg:pt-24">
+    <div class="band-inner">
+      <p class="wordmark" data-reveal="wordmark" aria-label="{{ brand }}: {{ t.hero.title }}">
+        <span class="wordmark-name" aria-hidden="true">{% for letter in brand_letters %}<span style="--n: {{ forloop.counter0 }}">{{ letter }}</span>{% endfor %}</span>
+        <span class="wordmark-verb" aria-hidden="true">{{ brand_verb }}</span>
+        <span class="tape wordmark-tape" aria-hidden="true" data-makes="{{ t.brand.makes|join:'|' }}">{{ t.brand.makes|last }}</span>
+      </p>
+      <p class="mt-5 max-w-[60ch] text-well-soft">{{ t.brand.hint }}</p>
+
+      <div class="mt-12 flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 border-t border-(--well-groove) pt-6 text-sm text-well-soft">
+        <p><span class="text-well-ink">{{ author }}</span> · {{ t.footer.location }}</p>
+        <p class="tabular">{{ company.name }} · CNPJ {{ company.cnpj }} · {{ company.city }}</p>
+        <p>
+          {{ t.footer.built }}
+          {% if repo_url %}<a class="text-well-ink underline" href="{{ repo_url }}" rel="noopener">{{ t.footer.source }}</a>{% endif %}
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
