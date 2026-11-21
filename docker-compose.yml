@@ -17,6 +17,11 @@ services:
       REPO_URL: ${REPO_URL:-}
     expose:
       - "8000"
+    labels:
+      # Used by the www domain in Dokploy (Domains > Middlewares: portfolio-www-to-root@docker).
+      traefik.http.middlewares.portfolio-www-to-root.redirectregex.regex: "^https?://www\\.oacciolyfaz\\.com/(.*)"
+      traefik.http.middlewares.portfolio-www-to-root.redirectregex.replacement: "https://oacciolyfaz.com/$${1}"
+      traefik.http.middlewares.portfolio-www-to-root.redirectregex.permanent: "true"
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen(u.Request('http://127.0.0.1:8000/', headers={'Host': 'oacciolyfaz.com', 'X-Forwarded-Proto': 'https'}))"]
       interval: 30s
