@@ -115,6 +115,12 @@ docker run --rm -p 8000:8000 -e DJANGO_SECRET_KEY=troque-isto -e DJANGO_ALLOWED_
 Em produção, defina `DJANGO_SECRET_KEY`, `DJANGO_ALLOWED_HOSTS`, `DJANGO_CSRF_TRUSTED_ORIGINS` e `SITE_URL`.
 `CONTACT_EMAIL` e `REPO_URL` são opcionais.
 
+O site no ar, em [oacciolyfaz.com](https://oacciolyfaz.com), roda no Dokploy como Docker Compose
+(`docker-compose.yml`), puxando este repositório. As variáveis ficam na aba Environment do Dokploy; os
+domínios `oacciolyfaz.com` e `www.oacciolyfaz.com` ficam na aba Domains, e o `www` usa o middleware
+`portfolio-www-to-root@docker`, declarado no compose, para redirecionar à raiz. Depois de um push, o
+deploy é disparado no Dokploy.
+
 ## Desenvolvimento com agentes
 
 O projeto é mantido com Claude Code. [CLAUDE.md](CLAUDE.md) traz o que vale em toda sessão,
