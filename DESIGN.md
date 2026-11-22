@@ -236,7 +236,7 @@ A assinatura do rodapé é um caso à parte: Anybody 850 com largura 150%, de 2.
 
 A página é uma pilha de faixas de largura total (`band`: respiro vertical de 3.5rem a 7rem, margem lateral `--gutter` de 1rem a 3.5rem), cada uma com miolo centrado de até 96rem (`band-inner`). As faixas alternam `face`, `face-up` e poço, e a divisão entre elas é sulco ou troca de plano. O cabeçalho (ponte) é fixo no alto, com 3.5rem de altura.
 
-Primeira tela da home: a frase atravessa o poço numa linha só; abaixo, uma coluna estreita à esquerda (texto, ações e, no pé, o seletor de monitor) e o monitor ocupando três quartos (`0.5fr / 1.5fr`); fechando, a fita de ponta a ponta, que sangra 1rem além da margem e avança sobre a faixa seguinte. A partir de 64rem a largura do monitor é calculada pela altura da janela para que monitor, controles e fita caibam numa tela.
+Primeira tela da home: a frase atravessa o poço numa linha só; abaixo, uma coluna estreita à esquerda (texto, ações e, no pé, o seletor de monitor) e o monitor ocupando três quartos (`0.5fr / 1.5fr`); fechando, a fita de ponta a ponta, que sangra 1rem além da margem e avança sobre a faixa seguinte. A partir de 64rem a largura do monitor é calculada pela altura da janela para que monitor, controles e fita caibam numa tela; a coluna esquerda ocupa `0.72fr` para o nome do autor caber numa linha.
 
 Dentro de `.rig` e `.dv-screen` as medidas são em `cqw`: o dispositivo escala com o contêiner, não com a janela.
 
@@ -321,6 +321,35 @@ Tudo que se aperta é tecla: curta, serigrafada, com curso de 1px.
 - **Trajetória (`.lanes`):** uma trilha por experiência, com régua de anos em fios de sulco, região na cor do barramento e agulha vermelha; a região em andamento esmaece na ponta direita.
 - **Rack (`.rack`):** as camadas de um projeto como unidades `details` num quadro de poço em leve perspectiva; a unidade aberta avança e acende as lâmpadas das suas partes.
 - **Ficha (`.facts`):** lista de termo e valor separada por sulcos, termo em legenda.
+
+### Primeira tela: quem está na mesa
+Abaixo da frase, a coluna esquerda abre com o `h1` da página: o nome do autor em Anybody 800 com largura
+112% (de 2.125rem a 2.5rem, numa linha só no desktop) e o traço de caneta vermelho por baixo, o mesmo que a
+fita desenha sob o nome em cena. Logo depois, o papel em Hanken 600, o texto de apoio em `well-soft` e as
+duas audiências (`.hero-buses`): uma linha por público, separada por fio de poço, com lâmpada acesa na cor do
+barramento (amarelo para vaga, laranja para projeto) e a legenda à esquerda. Em telas de desktop baixas (até
+54rem de altura) o texto de apoio sai para a fita continuar na primeira tela. A leitura sob o monitor diz o
+projeto, o tipo, o endereço no ar e o formato.
+
+### Barramentos de serviço
+`.services`: uma linha por barramento, separada por sulco, em três colunas no desktop: legenda com lâmpada,
+título em `display-3` com o texto, e "No ar em" com etiquetas de fita (`.tape-link`) dos projetos onde aquilo
+roda. Na página de Tecnologias a mesma linha traz o porquê e as tecnologias como etiquetas gravadas
+(`.service-skills`: 0.8125rem, aro em `groove-a`, fundo rebaixado).
+
+### Par de telas
+`.pair`: o print grande num notebook (tampa com base e entalhe) ou num monitor (pescoço e pé), e o celular
+encostado na frente, no canto inferior direito. Tudo em `cqw`, com sombra de objeto solto. A tela é o print
+inteiro, preso pelo topo; sob o cursor ou com foco, a página rola até o fim no tempo do próprio print. Aparece
+na página de Projetos (uma por produto) e na galeria "As telas." da página de projeto, que mostra cada
+página capturada com legenda e link para a página inteira.
+
+### Páginas internas
+Projetos, Sobre e Tecnologias abrem com trilha (`.crumbs`: legenda, barra como separador, página atual em
+`ink-soft`) e o título em `display-1` numa linha. Na página de Projetos cada produto é uma `.entry` de largura
+total que alterna `face` e `face-up` e troca o lado do par de telas. Perguntas frequentes (`.faq`) são
+`details` separados por sulco, com o mesmo chevron do rack. O link de navegação da página atual mantém o fio
+vermelho aceso (`aria-current="page"`). O rodapé lista as páginas e todos os projetos.
 
 ### Assinatura
 `.wordmark` no rodapé: "oAccioly" em Anybody com largura 150%, o verbo em `cap-yellow` e, numa etiqueta de fita, o que a empresa faz. As letras alargam uma depois da outra, como faders subindo. Junto com a placa do cabeçalho, é onde o nome da empresa e o nome do autor aparecem juntos.

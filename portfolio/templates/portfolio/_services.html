@@ -1,0 +1,25 @@
+{% comment %}One row per bus: what the author does there and where it already runs. Context: services, t, [show_why].{% endcomment %}
+<ul class="services">
+  {% for row in services %}
+  <li class="service" data-bus="{{ row.bus }}" id="bus-{{ row.bus }}">
+    <p class="legend flex items-center gap-2 text-ink-soft"><span class="lamp" data-on="true"></span>{{ row.label }}</p>
+    <div>
+      <h3 class="display-3">{{ row.title }}</h3>
+      <p class="mt-2 max-w-[60ch] text-ink-soft">{% if show_why %}{{ row.why }}{% else %}{{ row.body }}{% endif %}</p>
+      {% if show_why %}
+      <ul class="service-skills mt-4">
+        {% for skill in row.skills %}<li>{{ skill }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <div class="service-seen">
+      <p class="legend text-ink-soft">{{ t.services.seen_in }}</p>
+      <ul class="mt-2 flex flex-wrap gap-x-2 gap-y-2.5">
+        {% for project in row.projects %}
+        <li><a class="tape tape-link" href="{{ project.href }}" style="--tape-turn: {% cycle '-1deg' '0.8deg' '-0.4deg' '1deg' %}">{{ project.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+  {% endfor %}
+</ul>

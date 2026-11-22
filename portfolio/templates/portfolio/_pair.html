@@ -1,0 +1,26 @@
+{% comment %}
+  A screen pair: the large capture in its device (notebook with a deck, monitor with a stand)
+  and the phone capture leaning in front. Hovering scrolls both pages.
+  Context: large (Shot or None), large_device, phone (Shot or None), alt, [eager].
+{% endcomment %}
+<div class="pair{% if not phone %} pair-solo{% endif %}{% if not large %} pair-phone-only{% endif %}">
+  {% if large %}
+  <div class="pair-large" data-device="{{ large_device }}">
+    <div class="pair-lid">
+      <div class="pair-screen" style="--ar: {{ large.ratio_css }}">
+        <img src="{{ large.full }}" width="{{ large.width }}" height="{{ large.height }}" alt="{{ alt }}"
+             {% if not eager %}loading="lazy" {% endif %}decoding="async" style="--pan: {{ large.pan_css }}; --dur: {{ large.duration_css }}">
+      </div>
+    </div>
+    {% if large_device == "laptop" %}<span class="pair-deck" aria-hidden="true"></span>{% else %}<span class="pair-neck" aria-hidden="true"></span><span class="pair-foot" aria-hidden="true"></span>{% endif %}
+  </div>
+  {% endif %}
+  {% if phone %}
+  <div class="pair-phone">
+    <div class="pair-screen" style="--ar: {{ phone.ratio_css }}">
+      <img src="{{ phone.full }}" width="{{ phone.width }}" height="{{ phone.height }}" alt="{% if large %}{% else %}{{ alt }}{% endif %}"
+           {% if not eager %}loading="lazy" {% endif %}decoding="async" style="--pan: {{ phone.pan_css }}; --dur: {{ phone.duration_css }}">
+    </div>
+  </div>
+  {% endif %}
+</div>

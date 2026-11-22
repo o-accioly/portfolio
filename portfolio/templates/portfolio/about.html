@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load console %}
+
+{% block content %}
+{# ---------------------------------------------------------------- title #}
+<section class="band pt-8! pb-12!" aria-labelledby="about-title">
+  <div class="band-inner">
+    <nav class="crumbs legend" aria-label="{{ t.nav.breadcrumb }}">
+      <ol>
+        <li><a class="nav-link" href="{% url 'portfolio:home' %}">{{ t.nav.home }}</a></li>
+        <li><span aria-current="page">{{ t.nav.about }}</span></li>
+      </ol>
+    </nav>
+    <h1 class="display-1 mt-8" id="about-title" style="--chars: {{ t.about.title|length }}">{{ t.about.title }}</h1>
+    <p class="lead mt-6 text-ink-soft">{{ t.about.lead }}</p>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- story and fact sheet #}
+<section class="band groove pt-14!" aria-labelledby="story-title">
+  <div class="band-inner grid gap-x-20 gap-y-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+    <div>
+      <h2 class="display-2" id="story-title">{{ t.about.story_title }}</h2>
+      <div class="prose-panel mt-8">
+        {% for paragraph in t.about.story %}<p>{{ paragraph }}</p>{% endfor %}
+        <p>{{ t.about.teaching }}</p>
+      </div>
+    </div>
+    <aside class="content-start">
+      <h2 class="legend">{{ t.about.facts_title }}</h2>
+      <dl class="facts mt-3">
+        {% for fact in t.about.facts %}
+        <div>
+          <dt class="legend pt-1 text-ink-soft">{{ fact.0 }}</dt>
+          <dd class="font-medium">{{ fact.1 }}</dd>
+        </div>
+        {% endfor %}
+        <div>
+          <dt class="legend pt-1 text-ink-soft">LinkedIn</dt>
+          <dd class="font-medium"><a href="{{ linkedin_url }}" rel="noopener me">linkedin.com/in/oaccioly</a></dd>
+        </div>
+        <div>
+          <dt class="legend pt-1 text-ink-soft">GitHub</dt>
+          <dd class="font-medium"><a href="{{ github_url }}" rel="noopener me">github.com/o-accioly</a></dd>
+        </div>
+      </dl>
+      <div class="mt-10">
+        <h2 class="display-3">{{ t.about.company_title }}</h2>
+        <p class="mt-3 text-ink-soft">{{ t.about.company }}</p>
+        <p class="legend tabular mt-4 leading-relaxed text-ink-soft">{{ company.name }}<br>CNPJ {{ company.cnpj }} · {{ company.city }}</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- forward deployed #}
+<section class="band well" aria-labelledby="fde-title">
+  <div class="band-inner grid gap-x-20 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+    <h2 class="display-2 max-w-[16ch]" id="fde-title">{{ t.about.fde_title }}</h2>
+    <div class="grid gap-5">
+      {% for paragraph in t.about.fde %}<p class="lead {% if forloop.first %}text-well-ink{% else %}text-well-soft{% endif %}">{{ paragraph }}</p>{% endfor %}
+      <div class="mt-3 flex flex-wrap gap-3">
+        <a class="key key-well" href="{% url 'portfolio:projects' %}">{{ t.projects.all }}{% icon "arrow-right" 16 %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- session lanes #}
+<section class="band" id="trajetoria" aria-labelledby="journey-title">
+  <div class="band-inner">
+    <div class="mb-10 grid gap-x-12 gap-y-4 lg:grid-cols-2 lg:items-end">
+      <h2 class="display-2" id="journey-title">{{ t.journey.title }}</h2>
+      <p class="lead text-ink-soft">{{ t.journey.lead }}</p>
+    </div>
+
+    <div class="lanes" data-reveal="lanes" style="--year: {{ timeline.year_step }}">
+      {% for lane in timeline.lanes %}
+      <div class="lane" data-bus="{{ lane.bus }}">
+        <div>
+          <h3 class="display-3">{{ lane.name }}</h3>
+          <p class="mt-0.5 text-sm leading-snug text-ink-soft"><span class="legend tabular mr-1.5 whitespace-nowrap text-ink">{{ lane.from }} – {{ lane.to }}</span>{{ lane.role }}</p>
+        </div>
+        <div class="lane-track" aria-hidden="true">
+          <span class="lane-region" data-running="{{ lane.running|yesno:'true,false' }}" style="--left: {{ lane.left }}; --width: {{ lane.width }}; --n: {{ forloop.counter0 }}"></span>
+          <span class="playhead"></span>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="lane" aria-hidden="true">
+        <div class="lanes-axis-spacer"></div>
+        <div class="lane-years legend tabular">
+          {% for year in timeline.years %}<span class="lane-year" style="--left: {{ year.left }}">{{ year.year }}</span>{% endfor %}
+        </div>
+      </div>
+    </div>
+    <p class="mt-8 text-ink-soft">{{ t.journey.education }}</p>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- questions #}
+<section class="band groove bg-face-up" aria-labelledby="faq-title">
+  <div class="band-inner grid gap-x-20 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+    <h2 class="display-2 max-w-[14ch]" id="faq-title">{{ t.about.faq_title }}</h2>
+    <div class="faq">
+      {% for item in t.about.faq %}
+      <details name="faq"{% if forloop.first %} open{% endif %}>
+        <summary><h3 class="display-3">{{ item.q }}</h3><span class="rack-chevron" aria-hidden="true">{% icon "chevron" 18 %}</span></summary>
+        <p class="text-ink-soft">{{ item.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

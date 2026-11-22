@@ -63,6 +63,14 @@ construídos, hospedados e mantidos pela mesma pessoa, e o próprio repositório
   desativado porque o layout do produto quebra em 820 px.
 - **Mockups em vários formatos:** monitor ultrawide, monitor comum, notebook, tablet e celular, para
   mostrar responsividade e a navegação de cada produto.
+- **Páginas (desde 2026-11-21, a pedido do autor: "separa mais as páginas"):** Início, Projetos
+  (`/projects/`), uma página por projeto, Sobre (`/about/`) e Tecnologias (`/stack/`), nos três idiomas. A
+  faixa de contato fecha todas as páginas.
+- **Busca e IA:** o autor quer ser achado por "Gabriel Accioly", "oAccioly" e "oAccioly Faz", e quer os
+  projetos achados pelo nome. Todo texto vem do servidor; cada página tem título e descrição próprios,
+  canonical, `hreflang`, Open Graph com imagem e JSON-LD que liga a pessoa, a empresa e o site pelo mesmo
+  `@id`. `robots.txt` libera buscadores e assistentes de IA; `/llms.txt` e `/llms-full.txt` resumem o site
+  em inglês para modelos de linguagem.
 - **Idioma automático:** português (origem), inglês e espanhol, escolhido pelo idioma do navegador, com
   troca manual.
 - **Tema automático:** claro ou escuro conforme o sistema do visitante, com troca manual.

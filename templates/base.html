@@ -3,21 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}{{ t.meta.title }}{% endblock %}</title>
-  <meta name="description" content="{% block description %}{{ t.meta.description }}{% endblock %}">
+  {% firstof page_title t.meta.title as title %}{% firstof page_description t.meta.description as description %}
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
   <meta name="author" content="{{ author }}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#bfccd4">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d2a30">
   <link rel="canonical" href="{{ site_url }}{{ request.path }}">
   {% for language in languages %}<link rel="alternate" hreflang="{{ language.code }}" href="{{ site_url }}{{ language.url }}">
-  {% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site_url }}/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="{{ brand }}">
-  <meta property="og:title" content="{% block og_title %}{{ t.meta.title }}{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}{{ t.meta.description }}{% endblock %}">
+  {% endfor %}<link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ x_default_url }}">
+  <link rel="me" href="{{ linkedin_url }}">
+  <link rel="me" href="{{ github_url }}">
+  <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <meta property="og:type" content="{% firstof og_type 'website' %}">
+  <meta property="og:site_name" content="{{ brand }} · {{ author }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
   <meta property="og:url" content="{{ site_url }}{{ request.path }}">
-  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml">
+  {% for language in languages %}{% if language.current %}<meta property="og:locale" content="{{ language.locale }}">{% else %}<meta property="og:locale:alternate" content="{{ language.locale }}">{% endif %}
+  {% endfor %}{% if og_image %}<meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ title }}">
+  {% endif %}{% if og_type == "profile" %}<meta property="profile:first_name" content="Gabriel">
+  <meta property="profile:last_name" content="Accioly">
+  <meta property="profile:username" content="{{ author_alias }}">
+  {% endif %}<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description }}">
+  {% if og_image %}<meta name="twitter:image" content="{{ og_image }}">
+  {% endif %}<link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{% static 'og/logo.png' %}">
   <link rel="preload" href="{% static 'fonts/anybody-var.woff2' %}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{% static 'fonts/hanken-grotesk-var.woff2' %}" as="font" type="font/woff2" crossorigin>
   {# Before first paint: mark scripts as available and apply a stored light choice. #}
@@ -33,6 +53,7 @@
   </script>
   {% tailwind_css %}
   <script type="module" src="{% static 'js/app.js' %}"></script>
+  {% if ld %}{{ ld|jsonld }}{% endif %}
 </head>
 <body>
   <a class="key key-primary sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50" href="#main">{{ t.nav.skip }}</a>
@@ -63,13 +84,14 @@
         </button>
       </div>
     </div>
-    <nav class="legend flex items-center gap-6 overflow-x-auto border-t border-(--groove-a) px-(--gutter) xl:hidden" aria-label="{{ t.nav.label }}">
+    <nav class="legend bridge-nav flex flex-wrap items-center justify-between gap-x-2 border-t max-sm:tracking-[0.04em] max-sm:text-[0.625rem] sm:gap-x-4 border-(--groove-a) px-(--gutter) xl:hidden" aria-label="{{ t.nav.label }}">
       {% include "portfolio/_nav_links.html" %}
     </nav>
   </header>
 
   <main id="main">
     {% block content %}{% endblock %}
+    {% include "portfolio/_contact.html" %}
   </main>
 
   <footer class="well px-(--gutter) pt-16 pb-8 lg:pt-24">
@@ -81,8 +103,20 @@
       </p>
       <p class="mt-5 max-w-[60ch] text-well-soft">{{ t.brand.hint }}</p>
 
+      <nav class="footer-nav mt-12" aria-label="{{ t.nav.label }}">
+        <ul class="legend grid content-start gap-3">
+          <li><a href="{% url 'portfolio:home' %}">{{ t.nav.home }}</a></li>
+          <li><a href="{% url 'portfolio:projects' %}">{{ t.nav.projects }}</a></li>
+          <li><a href="{% url 'portfolio:stack' %}">{{ t.nav.stack }}</a></li>
+          <li><a href="{% url 'portfolio:about' %}">{{ t.nav.about }}</a></li>
+        </ul>
+        <ul class="footer-projects" aria-label="{{ t.nav.projects }}">
+          {% for item in footer_projects %}<li><a href="{{ item.href }}">{{ item.name }}</a></li>{% endfor %}
+        </ul>
+      </nav>
+
       <div class="mt-12 flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 border-t border-(--well-groove) pt-6 text-sm text-well-soft">
-        <p><span class="text-well-ink">{{ author }}</span> · {{ t.footer.location }}</p>
+        <p><span class="text-well-ink">{{ author }}</span> ({{ author_alias }}) · {{ t.footer.location }}</p>
         <p class="tabular">{{ company.name }} · CNPJ {{ company.cnpj }} · {{ company.city }}</p>
         <p>
           {{ t.footer.built }}

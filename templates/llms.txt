@@ -1,0 +1,87 @@
+{% autoescape off %}# Gabriel Accioly (oAccioly) · oAccioly Faz
+
+> Gabriel Accioly, who signs online as oAccioly, is a full-stack software engineer from Rio de Janeiro, Brazil, with a Forward Deployed Engineer profile: he works inside the client's operation and ships software that runs in production. He has been programming since 2017, founded the retail SaaS Diapasão, builds the products of Kaya Mind, and takes on projects through his company, oAccioly Faz (OACCIOLY FAZ LTDA, Pouso Alegre, MG, Brazil).
+
+{{ t.about.lead }}
+
+- LinkedIn: https://www.linkedin.com/in/oaccioly/
+- GitHub: https://github.com/o-accioly
+- Site: {{ site_url }}/ (Portuguese, English and Spanish)
+{% for audience in t.hero.audiences %}- Open to a {{ audience.label|lower }}: {{ audience.text }}
+{% endfor %}
+## Pages
+
+- [Home]({{ site_url }}{{ urls.home }}): the products on a monitor, what he does and how he works.
+- [About Gabriel Accioly]({{ site_url }}{{ urls.about }}): story, career timeline, education, company and FAQ.
+- [Projects]({{ site_url }}{{ urls.projects }}): every product with problem, solution, stack and real screens.
+- [Technologies]({{ site_url }}{{ urls.stack }}): what he uses, where it runs and why.
+{% for language in by_language %}- {{ language.name }}: [{{ site_url }}{{ language.home }}]({{ site_url }}{{ language.home }}) · [{{ site_url }}{{ language.about }}]({{ site_url }}{{ language.about }}) · [{{ site_url }}{{ language.projects }}]({{ site_url }}{{ language.projects }})
+{% endfor %}
+## What he does
+
+{% for row in services %}- **{{ row.title }}** ({{ row.label }}): {{ row.body }} In production in {% for project in row.projects %}{{ project.name }}{% if not forloop.last %}, {% endif %}{% endfor %}.
+{% endfor %}
+## Projects
+
+{% for project in projects %}- [{{ project.name }}]({{ site_url }}{{ project.href }}): {{ project.text.kind }}. {{ project.text.tagline }} Role: {{ project.text.role }}{% if project.since %}, {{ project.since }}{% endif %}.{% if project.url %} Live at {{ project.url }}{% endif %}{% if project.repo %} Code: {{ project.repo }}{% endif %}
+{% endfor %}{% if full %}
+## Project details
+{% for project in projects %}
+### {{ project.name }} ({{ project.text.kind }})
+
+{{ project.text.tagline }}
+
+- Role: {{ project.text.role }}{% if project.since %}, {{ project.since }}{% endif %}
+{% for fact in project.text.facts %}- {{ fact.0 }}: {{ fact.1 }}
+{% endfor %}{% if project.url %}- Live: {{ project.url }}
+{% endif %}{% if project.repo %}- Repository: {{ project.repo }}
+{% endif %}- Page: {{ site_url }}{{ project.href }}
+- Stack: {{ project.stack|join:", " }}
+
+**Problem.** {{ project.text.problem }}
+
+**What was built.** {{ project.text.built }}
+
+**Where it runs.** {{ project.text.runs }}
+
+Highlights:
+{% for line in project.highlights %}- {{ line }}
+{% endfor %}{% endfor %}
+## Story
+
+{% for paragraph in t.about.story %}{{ paragraph }}
+
+{% endfor %}{{ t.about.teaching }}
+
+### {{ t.about.fde_title }}
+
+{% for paragraph in t.about.fde %}{{ paragraph }}
+
+{% endfor %}## Career timeline
+
+{% for lane in timeline.lanes %}- {{ lane.from }}–{{ lane.to }}: {{ lane.name }}, {{ lane.role }}
+{% endfor %}- {{ t.journey.education }}
+
+## Technologies
+
+{% for row in services %}### {{ row.label }}
+
+{{ row.why }}
+
+{{ row.skills|join:", " }}
+
+{% endfor %}## {{ t.stack.ai_title }}
+
+{% for paragraph in t.stack.ai %}{{ paragraph }}
+
+{% endfor %}## FAQ
+{% for item in t.about.faq %}
+### {{ item.q }}
+
+{{ item.a }}
+{% endfor %}{% else %}
+## Optional
+
+- [Full text for language models]({{ site_url }}/llms-full.txt): every project in detail, the story, the timeline and the FAQ.
+- [Sitemap]({{ site_url }}/sitemap.xml)
+{% endif %}{% endautoescape %}

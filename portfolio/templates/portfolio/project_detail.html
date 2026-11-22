@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% load console %}
 
-{% block title %}{{ page_title }} · {{ author }}{% endblock %}
-{% block description %}{{ page_description }}{% endblock %}
-{% block og_title %}{{ page_title }}{% endblock %}
-{% block og_description %}{{ page_description }}{% endblock %}
-
 {% block content %}
 {# ---------------------------------------------------------------- title #}
 <section class="band pt-8! pb-10!" aria-labelledby="project-title">
   <div class="band-inner">
-    <a class="nav-link legend gap-2" href="{% url 'portfolio:home' %}#projetos">{% icon "arrow-left" 14 %}{{ t.detail.back }}</a>
+    <nav class="crumbs legend" aria-label="{{ t.nav.breadcrumb }}">
+      <ol>
+        <li><a class="nav-link" href="{% url 'portfolio:home' %}">{{ t.nav.home }}</a></li>
+        <li><a class="nav-link" href="{% url 'portfolio:projects' %}">{{ t.nav.projects }}</a></li>
+        <li><span aria-current="page">{{ project.name }}</span></li>
+      </ol>
+    </nav>
 
     <div class="mt-6 grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-end">
       <div>
-        <h1 class="tape text-[clamp(3rem,1.6rem+6vw,6rem)]" id="project-title">{{ project.name }}</h1>
+        <h1 class="tape text-[clamp(3rem,1.6rem+6vw,6rem)]" id="project-title">{{ project.name }}<span class="sr-only">: {{ project.text.kind }}</span></h1>
         <p class="display-3 mt-7 max-w-[34ch] text-[clamp(1.25rem,1rem+1vw,1.75rem)]!">{{ project.text.tagline }}</p>
       </div>
       <div class="flex flex-col items-start gap-4 lg:items-end">
@@ -44,6 +45,12 @@
 <section class="band">
   <div class="band-inner grid gap-x-20 gap-y-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
     <div class="grid content-start gap-10">
+      <div>
+        <h2 class="display-3">{{ t.detail.highlights }}</h2>
+        <ul class="highlights mt-4">
+          {% for line in project.highlights %}<li>{{ line }}</li>{% endfor %}
+        </ul>
+      </div>
       <div>
         <h2 class="display-3">{{ t.detail.problem }}</h2>
         <p class="lead mt-3 text-ink-soft">{{ project.text.problem }}</p>
@@ -76,15 +83,41 @@
       </dl>
 
       <h2 class="legend mt-10">{{ t.detail.stack }}</h2>
-      <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
-        {% for skill in stack %}<li class="text-[0.9375rem] font-medium">{{ skill }}</li>{% endfor %}
+      <ul class="service-skills mt-3">
+        {% for skill in stack %}<li>{{ skill }}</li>{% endfor %}
       </ul>
     </aside>
   </div>
 </section>
 
+{% if pairs %}
+{# ---------------------------------------------------------------- every captured page #}
+<section class="band groove bg-face-up" aria-labelledby="screens-title">
+  <div class="band-inner">
+    <div class="mb-10 grid gap-x-12 gap-y-4 lg:grid-cols-2 lg:items-end">
+      <h2 class="display-2" id="screens-title">{{ t.detail.screens }}</h2>
+      <p class="lead text-ink-soft">{% if project.demo_screens %}{{ t.detail.screens_demo }} {% endif %}{{ t.detail.screens_lead }}</p>
+    </div>
+    <div class="screens">
+      {% for pair in pairs %}
+      <figure class="screen">
+        <a class="screen-link" href="{% if pair.large %}{{ pair.large.full }}{% else %}{{ pair.phone.full }}{% endif %}" target="_blank" rel="noopener"
+           aria-label="{{ t.detail.full_page }}: {{ project.name }}, {{ pair.caption }}">
+          {% include "portfolio/_pair.html" with large=pair.large large_device=pair.large_device phone=pair.phone alt=project.name|add:": "|add:pair.caption %}
+        </a>
+        <figcaption class="screen-caption mt-4">
+          <span class="display-3">{{ pair.caption }}</span>
+          <span class="legend inline-flex items-center gap-1.5 text-ink-soft">{{ t.detail.full_page }}{% icon "arrow-up-right" 14 %}</span>
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 {# ---------------------------------------------------------------- rack #}
-<section class="band groove bg-face-up" aria-labelledby="layers-title">
+<section class="band{% if not pairs %} groove bg-face-up{% endif %}" aria-labelledby="layers-title">
   <div class="band-inner">
     <h2 class="display-2" id="layers-title">{{ t.detail.layers }}</h2>
     <p class="lead mt-4 text-ink-soft">{{ t.detail.layers_lead }}</p>
@@ -111,7 +144,7 @@
 
 {% if inside %}
 {# ---------------------------------------------------------------- inside (hand-picked screens) #}
-<section class="band" aria-labelledby="inside-title">
+<section class="band groove bg-face-up" aria-labelledby="inside-title">
   <div class="band-inner">
     <h2 class="display-2" id="inside-title">{{ t.detail.inside }}</h2>
     <p class="lead mt-4 text-ink-soft">{{ t.detail.inside_lead }}</p>
@@ -141,6 +174,7 @@
 <nav class="well px-(--gutter) py-8" aria-label="{{ t.nav.projects }}">
   <div class="band-inner flex flex-wrap items-center justify-between gap-4">
     <a class="key key-well" href="{{ previous.href }}" rel="prev">{% icon "arrow-left" 16 %}<span class="sr-only">{{ t.detail.previous }}:</span>{{ previous.name }}</a>
+    <a class="key key-well" href="{% url 'portfolio:projects' %}">{{ t.nav.projects }}</a>
     <a class="key key-well" href="{{ next.href }}" rel="next"><span class="sr-only">{{ t.detail.next }}:</span>{{ next.name }}{% icon "arrow-right" 16 %}</a>
   </div>
 </nav>

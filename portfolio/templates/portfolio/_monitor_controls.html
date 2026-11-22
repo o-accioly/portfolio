@@ -3,6 +3,8 @@
 <div class="relative z-10 mt-2 flex items-center justify-between gap-4">
   <p class="legend leading-relaxed text-well-soft" aria-live="polite">
     {{ t.hero.on_stage }}: <span class="text-well-ink" data-bind="project-name">{{ current.name }}</span>
+    <span class="whitespace-nowrap"><span aria-hidden="true">·</span> <span data-bind="project-kind">{{ current.text.kind }}</span></span>
+    <span class="whitespace-nowrap"><span aria-hidden="true">·</span> <span class="text-well-ink normal-case tracking-normal" data-bind="project-host">{% if current.url %}{{ current.host }}{% else %}{{ t.hero.no_page }}{% endif %}</span></span>
     <span aria-hidden="true">·</span>
     {% for device in devices %}{% if device.key == current_device %}<span data-bind="device-label">{{ device.label }}</span>
     <span class="tabular whitespace-nowrap text-well-ink" data-bind="device-size">{{ device.width }} × {{ device.height }}</span>{% endif %}{% endfor %}

@@ -137,6 +137,8 @@ export function initStage() {
     }
     for (const node of document.querySelectorAll("[data-bind='project-name']")) node.textContent = project.name;
     for (const node of document.querySelectorAll("[data-bind='project-open']")) node.textContent = project.open;
+    for (const node of document.querySelectorAll("[data-bind='project-kind']")) node.textContent = project.kind;
+    for (const node of document.querySelectorAll("[data-bind='project-host']")) node.textContent = project.host;
     for (const node of document.querySelectorAll("[data-bind='project-link']")) node.setAttribute("href", project.href);
     for (const node of document.querySelectorAll("[data-bind='device-size']")) node.textContent = `${size.w} × ${size.h}`;
     for (const node of document.querySelectorAll("[data-bind='device-label']")) {

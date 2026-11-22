@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from typing import Any
 
 from django import template
@@ -40,3 +41,13 @@ def icon(name: str, size: int = 20) -> SafeString:
 @register.filter
 def get(mapping: dict[str, Any], key: str) -> Any:
     return mapping.get(key)
+
+
+_JSON_ESCAPES = {ord("<"): "\\u003C", ord(">"): "\\u003E", ord("&"): "\\u0026"}
+
+
+@register.filter
+def jsonld(data: dict[str, Any]) -> SafeString:
+    """A JSON-LD block. `<`, `>` and `&` are escaped so the copy cannot close the script."""
+    text = json.dumps(data, ensure_ascii=False, separators=(",", ":")).translate(_JSON_ESCAPES)
+    return mark_safe(f'<script type="application/ld+json">{text}</script>')  # noqa: S308 - escaped above

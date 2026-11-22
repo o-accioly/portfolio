@@ -1,4 +1,11 @@
+# Gabriel Accioly · oAccioly Faz
+# Everything here is public and meant to be read, by search engines and by AI assistants.
+# A plain-text summary for language models: {{ site_url }}/llms.txt (full text: {{ site_url }}/llms-full.txt)
+
 User-agent: *
 Allow: /
-
-Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml
+{% for bot in ai_crawlers %}
+User-agent: {{ bot }}
+Allow: /
+{% endfor %}
+Sitemap: {{ site_url }}/sitemap.xml

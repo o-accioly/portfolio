@@ -2,9 +2,21 @@
 
 CONTENT = {
     "meta": {
-        "title": "Gabriel Accioly · Software engineer, from problem to production",
-        "description": "Portfolio of Gabriel Accioly, a software engineer with a Forward Deployed profile: real "
-        "products in production, built, hosted and maintained end to end.",
+        "title": "Gabriel Accioly (oAccioly) · Software engineer, from problem to production",
+        "description": "Gabriel Accioly (oAccioly) is a full-stack, Forward Deployed software engineer. "
+        "Live products like Diapasão, KayaDoc and ZipZap, built and run end to end.",
+        "job_title": "Full-stack software engineer",
+        "og_locale": "en_US",
+        "about_title": "About Gabriel Accioly (oAccioly) · Software engineer in Rio de Janeiro",
+        "about_description": "Who Gabriel Accioly is: software engineer since 2017, founder of Diapasão, developer "
+        "at Kaya Mind, owner of oAccioly Faz. Career, education and way of working.",
+        "projects_title": "Gabriel Accioly's projects · SaaS, AI, data and integrations in production",
+        "projects_description": "Products Gabriel Accioly built and runs: Diapasão, KayaDoc, Kaya Dashboard, "
+        "KayaEducation, Sabo, ZipZap, Desbravador and more, with real screens.",
+        "stack_title": "Gabriel Accioly's technologies · Python, Django, PostgreSQL, AI and Docker",
+        "stack_description": "Technologies Gabriel Accioly uses and where each runs: Python, Django, PostgreSQL, "
+        "HTMX, AI agents, Docker, WhatsApp, payments and invoicing.",
+        "project_title": "{name}: {kind} · A project by Gabriel Accioly",
     },
     "nav": {
         "skip": "Skip to content",
@@ -16,18 +28,34 @@ CONTENT = {
         "contact": "Contact",
         "language": "Language",
         "home": "Home",
+        "about": "About",
+        "stack": "Technologies",
+        "breadcrumb": "You are here",
     },
     "theme": {"label": "Studio lights", "auto": "Auto", "light": "On", "dark": "Dimmed"},
     "hero": {
         "title": "From problem to production.",
-        "lead": "I'm Gabriel Accioly, a software engineer with a Forward Deployed profile. I go into the "
-        "operation, build the system and put it in production: discovery, architecture, code, "
-        "integrations, hosting and support. I've been covering the whole path for more than 8 years.",
+        "name": "Gabriel Accioly",
+        "role": "Full-stack software engineer with a Forward Deployed profile.",
+        "lead": "I go into the operation, build the system and put it in production: discovery, architecture, "
+        "code, integrations, hosting and support. I've covered the whole path since 2017.",
+        "audiences": [
+            {
+                "label": "Job",
+                "text": "Forward Deployed Engineer or senior full-stack, for teams that need a product in production.",
+            },
+            {
+                "label": "Project",
+                "text": "A custom system for your business, from diagnosis to support after launch.",
+            },
+        ],
         "open": "Open {name}",
         "contact": "Get in touch",
+        "about": "About me",
         "monitor": "Monitor",
         "tape": "Projects on the monitor",
         "on_stage": "On stage",
+        "no_page": "no public page",
     },
     "devices": {
         "label": "Screen size",
@@ -46,6 +74,138 @@ CONTENT = {
         "repo": "View repository",
         "since": "since {year}",
         "illustration": "Illustration. This product has no public page.",
+        "all": "All projects, in detail",
+        "page_title": "Projects.",
+        "page_lead": "{count} products, each with the problem, what I built, where it runs and the real screens. "
+        "The live ones have a link; the private ones are shown running with demonstration data.",
+        "stack": "Technologies",
+        "screens_count": "{count} screens captured",
+        "highlights": {
+            "diapasao": [
+                "Inventory, POS, online store, CRM and invoicing in a single system",
+                "AI in product records, in inbound invoices and in the first contact on WhatsApp",
+                "Sabo assistant that looks things up and takes action, with confirmation before sensitive operations",
+                "Each store isolated by Row-Level Security, with an isolation test in CI",
+                "2 stores and 20 users in production",
+            ],
+            "kayadoc": [
+                "Separate experiences for doctors, patients and brands",
+                "Payments through Pagar.me",
+                "Digital signature with A1 and A3 certificates",
+                "PWA with passkeys, second factor and Google sign-in",
+                "About 4,000 registered users",
+            ],
+            "kayamind": [
+                "Building the products since 2022, full-time and remote",
+                "KayaDoc, KayaEducation, Kaya Dashboard and Sabo",
+                "About 20 data extractors a month at the start",
+                "Extraction method taught to the team, which went on to build its own",
+            ],
+            "kaya-dashboard": [
+                "One analytics environment per brand",
+                "Reports embedded through the official Power BI API",
+                "Each brand sees only its own numbers",
+                "Team console to manage brands and dashboards",
+            ],
+            "kayaeducation": [
+                "White-label LMS: each brand with its own identity",
+                "Courses organized into learning paths",
+                "Student area and brand panel",
+                "Django, HTMX and Tailwind",
+            ],
+            "desbravador": [
+                "Extractor created in a conversation with a Claude agent, in a terminal inside the browser",
+                "Deterministic execution in Playwright, with no language model in the critical path",
+                "Quality measured on every run",
+                "Up to 3 automatic repair attempts before calling a person",
+                "Versioned configuration, with a canary before promotion",
+            ],
+            "sabo": [
+                "Market questions in plain Portuguese, with numbers traceable back to the query",
+                "Read-only database tools",
+                "Live answers, attachments and voice conversation",
+                "Runs on the Claude Agent SDK or on OpenAI's Responses API",
+                "Quota and cost measured per person; version 1.0 in October 2026",
+            ],
+            "zipzap": [
+                "Five delivery states, each with its own evidence",
+                "API that answers 202 and delivers the result through a signed webhook",
+                "Node (Baileys) and Go (whatsmeow) runtimes behind the same contract",
+                "Accounts move to another worker without a new QR code",
+                "Used by Diapasão",
+            ],
+            "duetto": [
+                "Online store in Django",
+                "Automated customer service with n8n and Chatwoot",
+                "Up-to-date inventory and enriched product SEO",
+                "Integration with Dolibarr for management",
+                "Where Diapasão was born",
+            ],
+            "optimum": [
+                "Site and platform in Django with Wagtail",
+                "The team publishes documents and articles without depending on a developer",
+                "Blog, document area and a calculator for investors",
+                "Celery and Redis for background tasks",
+            ],
+            "standup": [
+                "Minutes, dailies and operational meetings",
+                "Agendas, decisions and the tasks that come out of each meeting",
+                "Real-time collaborative editing with Hocuspocus and Yjs",
+                "Next.js on the interface, Django REST Framework on the API",
+            ],
+        },
+        "pages": {
+            "diapasao": {
+                "home": "Diapasão home page",
+                "crm": "CRM",
+                "loja": "Online store",
+                "assistente": "AI assistant",
+            },
+            "kayadoc": {"home": "Home page", "funcionalidades": "Features", "planos": "Plans"},
+            "kayamind": {"home": "Home page", "relatorios": "Reports"},
+            "kaya-dashboard": {
+                "home": "Environment of a fictional brand",
+                "console": "Team console",
+                "paineis": "Brand dashboards",
+                "eventos": "Usage events",
+                "entrar": "Login screen",
+            },
+            "kayaeducation": {
+                "home": "Student area",
+                "aula": "Lesson",
+                "conteudo": "Course content",
+                "engajamento": "Engagement",
+                "entrar": "Login screen",
+                "painel": "Brand panel",
+                "trilha": "Learning path",
+            },
+            "desbravador": {
+                "home": "Overview",
+                "painel": "Project panel",
+                "extrator": "Extractor",
+                "execucoes": "Runs",
+                "dados": "Extracted data",
+            },
+            "sabo": {
+                "home": "Chat with the agent",
+                "consultas": "Advanced mode, with the SQL",
+                "custo": "Usage and cost",
+            },
+            "zipzap": {
+                "home": "Panel overview",
+                "conversas": "Conversations",
+                "instancia": "Connected number",
+                "webhooks": "Webhooks",
+            },
+            "duetto": {"home": "Store home page", "categoria": "Mixing console category"},
+            "optimum": {"home": "Home page", "quem-somos": "About us", "calculadora": "Calculator"},
+            "standup": {
+                "home": "Home",
+                "operacional": "Operational meeting",
+                "daily": "Daily",
+                "ata": "Minutes",
+            },
+        },
         "items": {
             "diapasao": {
                 "kind": "Retail SaaS",
@@ -430,6 +590,162 @@ CONTENT = {
             "invoicing": "Invoicing",
         },
     },
+    "services": {
+        "title": "What I do.",
+        "lead": "Six buses on the same desk. Each one is already live in some product on this page.",
+        "seen_in": "Live in",
+        "more": "See all technologies",
+        "items": {
+            "lang": {
+                "title": "Custom web systems",
+                "body": "Applications in Python and Django, from multi-tenant SaaS with per-client isolation to "
+                "company websites with a CMS the team edits on its own.",
+            },
+            "data": {
+                "title": "Data, extraction and queues",
+                "body": "Extractors, ETL and loads that feed analysis; queues and background tasks for whatever "
+                "must not freeze the screen.",
+            },
+            "ui": {
+                "title": "Work interfaces",
+                "body": "Dashboards, POS, stores and logged-in areas with HTMX, Alpine.js and Tailwind; a PWA when "
+                "the product needs to live on the phone.",
+            },
+            "ai": {
+                "title": "AI and agents wired to the business",
+                "body": "Agents that look up and act on the company's data, with confirmation before any sensitive "
+                "operation.",
+            },
+            "infra": {
+                "title": "Hosting and operations",
+                "body": "Docker on Linux, own server or deploy panel, CI/CD and support. I put it in production and "
+                "keep looking after it.",
+            },
+            "integ": {
+                "title": "Integrations with what you already use",
+                "body": "WhatsApp, payments, invoicing, digital signature, Mercado Livre, n8n, Chatwoot and ERP, "
+                "connected in one place.",
+            },
+        },
+    },
+    "about": {
+        "title": "About Gabriel Accioly.",
+        "lead": "Software engineer in Rio de Janeiro. I've been programming since 2017 and I take products from "
+        "zero to production, on my own or inside lean teams.",
+        "teaser_title": "One person, every instrument.",
+        "teaser": "I'm Gabriel Accioly. I've been programming since 2017, I founded Diapasão, I build Kaya "
+        "Mind's products and I take on projects through oAccioly Faz, my company.",
+        "more": "More about me",
+        "story_title": "The story.",
+        "story": [
+            "I started as a freelancer in January 2017, writing Django applications, data scrapers, ETL and "
+            "Python automations. Since then I've worked with several tracks playing at once: my own product, "
+            "a company and clients.",
+            "Between 2021 and 2026 I automated solar financing across several banks at Volt-x, by B2W Energia "
+            "Solar. Since June 2022 I've been a data scientist and Django developer at Kaya Mind, full-time and "
+            "remote: I'm responsible for the architecture and development of KayaDoc (about 4,000 registered "
+            "users), KayaEducation, the per-brand analytics environments and Sabo, the market analyst agent.",
+            "In March 2025 I joined Duetto Musical, an instrument store, to build the online store, the "
+            "automated customer service and the integration with its management system. What worked there "
+            "became Diapasão, the retail SaaS I founded in June 2025.",
+            "I use AI agents (Claude Code and Codex) as part of how I build, with tests, security review and "
+            "browser validation holding up the quality. The code for this site is public, along with the rules "
+            "the agents follow.",
+        ],
+        "fde_title": "What a Forward Deployed Engineer is.",
+        "fde": [
+            "The engineer who works inside the client's operation: sits with the people who use the system, "
+            "understands the work and delivers software running in production, with no gap between who asks "
+            "and who builds.",
+            "It's what I do on every project on this page. Diapasão was born at the counter of an instrument "
+            "store; Sabo, from the queue of market questions waiting for an analyst; Desbravador, from "
+            "extractors that broke every time the source site changed.",
+        ],
+        "company_title": "oAccioly Faz.",
+        "company": "oAccioly Faz is my company, and it's through it that I take on projects. The name says what "
+        "I do: discovery, architecture, code, integrations, deployment and support.",
+        "facts_title": "Fact sheet",
+        "facts": [
+            ["Name", "Gabriel Accioly"],
+            ["Goes by", "oAccioly"],
+            ["Based in", "Rio de Janeiro, Brazil"],
+            ["Programming since", "2017"],
+            ["Education", "Technologist degree in Data Science"],
+            ["Today", "Founder of Diapasão and developer at Kaya Mind"],
+            ["Company", "oAccioly Faz"],
+        ],
+        "teaching": "Before that, I taught game development at Microcamp (2019 to 2020).",
+        "faq_title": "Frequently asked questions.",
+        "faq": [
+            {
+                "q": "Who is Gabriel Accioly?",
+                "a": "Gabriel Accioly is a Brazilian software engineer from Rio de Janeiro with a Forward "
+                "Deployed profile. He has been programming since 2017, founded Diapasão and builds Kaya Mind's "
+                "products.",
+            },
+            {
+                "q": "What is oAccioly Faz?",
+                "a": "It's Gabriel Accioly's company (OACCIOLY FAZ LTDA, Pouso Alegre, MG), through which he takes "
+                "on projects. oAccioly is the name he goes by on LinkedIn and GitHub.",
+            },
+            {
+                "q": "What kind of projects does he take on?",
+                "a": "Custom web systems and multi-tenant SaaS, data extraction and engineering, AI agents wired "
+                "to business data, integrations (WhatsApp, payments, invoicing, Mercado Livre, digital "
+                "signature) and the hosting and support of all of it.",
+            },
+            {
+                "q": "Which technologies does he work with?",
+                "a": "Python and Django at the core, with PostgreSQL, Redis, Celery, HTMX, Alpine.js and Tailwind. "
+                "Also PHP with Symfony, Node.js, Go, FastAPI and Next.js when the project calls for it. In AI, "
+                "Claude Agent SDK, MCP, Claude Code and Codex; in infrastructure, Docker, Linux, Dokploy and CI/CD.",
+            },
+            {
+                "q": "Does he work remotely?",
+                "a": "Yes. At Kaya Mind he has worked full-time and remotely since 2022.",
+            },
+            {
+                "q": "How can I reach him?",
+                "a": "Through LinkedIn (linkedin.com/in/oaccioly) or GitHub (github.com/o-accioly), for a job "
+                "or for a project.",
+            },
+        ],
+    },
+    "stack": {
+        "title": "Technologies.",
+        "lead": "What I use, where it's already live and why. Python and Django at the core; the rest comes in "
+        "when the problem calls for it.",
+        "why": {
+            "lang": "Python and Django are the base of almost everything: quick to build, easy to maintain and "
+            "with an ecosystem for data. PHP with Symfony, Node.js and Go come in when the project calls for "
+            "it, like ZipZap's WhatsApp runtimes; FastAPI when the API needs streaming, as in Sabo.",
+            "data": "PostgreSQL as the main database, with Row-Level Security when each client must stay "
+            "isolated. Redis, Celery and RabbitMQ for queues; Playwright and scraping for extraction; pandas for "
+            "ETL; Power BI when the client already does its analysis there.",
+            "ui": "HTMX and Alpine.js on top of server templates: a fast interface without a second application "
+            "to maintain. Next.js and React when real-time collaboration calls for it, as in Standup with Yjs.",
+            "ai": "Agents that look things up and act through the Claude Agent SDK and MCP, always with read-only "
+            "tools or confirmation before touching money or inventory. Day to day, Claude Code and Codex speed "
+            "up writing the code.",
+            "infra": "Docker on Linux, on my own server (bare metal) or with a deploy panel (Dokploy, "
+            "Easypanel), and CI/CD on every project.",
+            "integ": "Integrations are where the business lives: WhatsApp, payments (Pagar.me), invoicing, "
+            "A1 and A3 digital signature, Mercado Livre, n8n, Chatwoot and Dolibarr.",
+        },
+        "ai_title": "How I use AI to build.",
+        "ai": [
+            "I work with coding agents (Claude Code and Codex) from the first line: they write, and I decide "
+            "the architecture, review, test and validate in the browser. Tests, security review and CI hold up "
+            "the quality.",
+            "Each repository has its own rules written for the agents, in a CLAUDE.md and in per-folder rules. "
+            "This site's is public: you can read how the work is run.",
+            "In the products, AI has clear limits. In Desbravador, the agent creates and fixes the extractor, "
+            "but never runs in production. In Diapasão, the assistant asks for confirmation before any "
+            "sensitive operation. In Sabo, the database only accepts reads.",
+        ],
+        "repo": "Read this site's code",
+        "count": "{count} technologies",
+    },
     "process": {
         "title": "How a problem becomes a system in production.",
         "lead": "The same path on every project, from the first conversation to support after launch.",
@@ -514,6 +830,12 @@ CONTENT = {
         "no_shots": "This product has no public page. The monitor shows an illustration of what it does.",
         "inside_pending": "This product's internal screens sit behind a login and are not shown here.",
         "demo_screens": "The monitor shows the panel running locally with demonstration data.",
+        "highlights": "Highlights",
+        "screens": "The screens.",
+        "screens_lead": "Every captured page, at full size and on the phone. Open one to see the whole page.",
+        "screens_demo": "Screens of the product running locally with demonstration data. None of the data is real.",
+        "full_page": "See the whole page",
+        "visit": "Visit {host}",
     },
     "layers": {
         "interface": "Interface",

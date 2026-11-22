@@ -55,10 +55,17 @@ def main() -> None:
                 page.wait_for_timeout(700)
                 page.screenshot(path=OUT / f"{name}-first-{device}.png")
             page.locator("[data-set-device=laptop]").dispatch_event("click")
-            page.click("[data-solo=desbravador]")
             page.click("[data-patch-tab='3']")
             page.wait_for_timeout(700)
             full_page(page, OUT / f"{name}.png")
+            page.goto(f"{BASE}/pt-br/stack/", wait_until="networkidle")
+            page.click("[data-solo=desbravador]")
+            page.wait_for_timeout(700)
+            full_page(page, OUT / f"{name}-stack.png")
+            for path in ("about", "projects"):
+                page.goto(f"{BASE}/pt-br/{path}/", wait_until="networkidle")
+                page.wait_for_timeout(600)
+                full_page(page, OUT / f"{name}-{path}.png")
             for slug in ("diapasao", "desbravador"):
                 page.goto(f"{BASE}/pt-br/projects/{slug}/", wait_until="networkidle")
                 page.wait_for_timeout(600)

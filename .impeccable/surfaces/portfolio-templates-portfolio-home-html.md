@@ -2,12 +2,12 @@
 version: 1
 slug: "portfolio-templates-portfolio-home-html"
 primary_target: "portfolio/templates/portfolio/home.html"
-related_targets: ["portfolio/templates/portfolio/project_detail.html"]
+related_targets: ["portfolio/templates/portfolio/project_detail.html", "portfolio/templates/portfolio/projects.html", "portfolio/templates/portfolio/about.html", "portfolio/templates/portfolio/stack.html"]
 ---
 
 # Surface brief: site do portfólio (home + detalhe de projeto)
 
-Scope: `/` (home) e `/projects/<slug>/`. Visitor mode: Experience.
+Scope: `/` (home), `/projects/`, `/projects/<slug>/`, `/about/` e `/stack/`. Visitor mode: Experience.
 
 Audience and job: quem contrata para vaga (FDE / full-stack sênior) e quem contrata para projeto, com o mesmo peso. Os dois precisam ver, em segundos, produtos reais no ar e achar como falar com o autor.
 
@@ -27,7 +27,7 @@ OWN-WORLD: Painel esmaltado azul-acinzentado (claro com a luz acesa, petróleo c
 
 STORY: O visitante entende que os produtos são reais e estão no ar, acredita que a mesma pessoa leva do problema à produção, e abre um projeto ou entra em contato.
 
-FIRST VIEWPORT: Faixa fina no alto com a placa do nome (que vira "oAccioly Faz" e volta), navegação, idioma e interruptor de luz. A frase principal atravessa o poço numa linha só, em display estendido. Abaixo, à esquerda, o texto de apresentação, a ação principal (abrir o projeto em cena) e, no pé da coluna, o seletor de monitor: os cinco tamanhos de tela como contornos aninhados em escala real, cada um uma tecla, o atual em linha cheia e os outros tracejados. À direita, ocupando três quartos da largura, o dispositivo 3D com o print real do projeto selecionado rolando. Fechando a tela, a fita crepe de ponta a ponta com os nomes dos projetos escritos a caneta: tocar num nome troca o produto no monitor. (Adaptação registrada em 2026-11-21: a frase passou a correr por cima do poço inteiro e o seletor foi para o pé da coluna esquerda, para o monitor ficar maior. No celular a ordem é frase, texto, ação, monitor, seletor, fita.)
+FIRST VIEWPORT: Faixa fina no alto com a placa do nome (que vira "oAccioly Faz" e volta), navegação, idioma e interruptor de luz. A frase principal atravessa o poço numa linha só, em display estendido. Abaixo, à esquerda, o texto de apresentação, a ação principal (abrir o projeto em cena) e, no pé da coluna, o seletor de monitor: os cinco tamanhos de tela como contornos aninhados em escala real, cada um uma tecla, o atual em linha cheia e os outros tracejados. À direita, ocupando três quartos da largura, o dispositivo 3D com o print real do projeto selecionado rolando. Fechando a tela, a fita crepe de ponta a ponta com os nomes dos projetos escritos a caneta: tocar num nome troca o produto no monitor. (Adaptação registrada em 2026-11-21: a frase passou a correr por cima do poço inteiro e o seletor foi para o pé da coluna esquerda, para o monitor ficar maior. No celular a ordem é frase, texto, ação, monitor, seletor, fita.) (Segunda adaptação, 2026-11-21, pedido do autor "a hero está fraquinha": a coluna esquerda passou a abrir com o `h1` do nome e do papel, com o traço de caneta sob o nome, e com as duas audiências, vaga e projeto, em linhas com lâmpada; a leitura do monitor ganhou tipo e endereço do produto. A matriz foi para a página de Tecnologias e a trajetória para a página Sobre.)
 
 FORM: Sala de controle com mesa de mixagem analógica; posição 4 da lista ordenada; seed:7b532a8f2b7a711b. Elevações herdadas das cartas recusadas: tamanhos de tela aninhados (cheio/tracejado); o apagado também é desenhado; uma leitura monumental por cena; densidade com fio fino no detalhe; toda seleção aparece no canal e no monitor.
 

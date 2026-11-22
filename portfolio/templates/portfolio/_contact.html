@@ -1,0 +1,21 @@
+{% load console %}
+{# ---------------------------------------------------------------- contact (every page) #}
+<section class="band bg-cap-red text-white" id="contato" aria-labelledby="contact-title">
+  <div class="band-inner grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
+    <div>
+      <h2 class="display-2 max-w-[18ch]" id="contact-title">{{ t.contact.title }}</h2>
+      <p class="lead mt-4">{{ t.contact.lead }}</p>
+    </div>
+    <div class="flex flex-col items-start gap-3">
+      <div class="flex flex-wrap gap-3">
+        <a class="key" href="{{ linkedin_url }}" rel="noopener me">{% icon "linkedin" 16 %}{{ t.contact.linkedin }}</a>
+        <a class="key" href="{{ github_url }}" rel="noopener me">{% icon "github" 16 %}{{ t.contact.github }}</a>
+        {% if contact_email %}<a class="key" href="mailto:{{ contact_email }}">{% icon "mail" 16 %}{{ t.contact.email }}</a>{% endif %}
+      </div>
+      <button class="key key-well" type="button" data-tone aria-pressed="false" hidden>
+        <span class="lamp" data-bus="data"></span>{% icon "wave" 16 %}{{ t.contact.tone }}
+      </button>
+      <p class="text-sm" data-tone-hint hidden>{{ t.contact.tone_hint }}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load console %}
+
+{% block content %}
+{# ---------------------------------------------------------------- title #}
+<section class="band pt-8! pb-12!" aria-labelledby="stack-title">
+  <div class="band-inner">
+    <nav class="crumbs legend" aria-label="{{ t.nav.breadcrumb }}">
+      <ol>
+        <li><a class="nav-link" href="{% url 'portfolio:home' %}">{{ t.nav.home }}</a></li>
+        <li><span aria-current="page">{{ t.nav.stack }}</span></li>
+      </ol>
+    </nav>
+    <h1 class="display-1 mt-8" id="stack-title" style="--chars: 14">{{ t.stack.title }}</h1>
+    <p class="lead mt-6 text-ink-soft">{{ t.stack.lead }}</p>
+    <ul class="mt-10 flex flex-wrap gap-2" aria-label="{{ t.stack.title }}">
+      {% for row in services %}
+      <li><a class="key key-small" href="#bus-{{ row.bus }}" data-bus="{{ row.bus }}"><span class="lamp" data-on="true"></span>{{ row.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- buses #}
+<section class="band groove pt-12!" aria-label="{{ t.stack.title }}">
+  <div class="band-inner">
+    {% include "portfolio/_services.html" with show_why=True %}
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- building with AI #}
+<section class="band well" aria-labelledby="ai-title">
+  <div class="band-inner grid gap-x-20 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+    <h2 class="display-2 max-w-[16ch]" id="ai-title">{{ t.stack.ai_title }}</h2>
+    <div class="grid gap-5">
+      {% for paragraph in t.stack.ai %}<p class="lead {% if forloop.first %}text-well-ink{% else %}text-well-soft{% endif %}">{{ paragraph }}</p>{% endfor %}
+      {% if repo_url %}
+      <div class="mt-3 flex flex-wrap gap-3">
+        <a class="key key-well" href="{{ repo_url }}" rel="noopener">{% icon "github" 16 %}{{ t.stack.repo }}</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- routing matrix #}
+<section class="band groove bg-face-up" id="habilidades" aria-labelledby="skills-title">
+  <div class="band-inner">
+    <h2 class="display-2" id="skills-title">{{ t.skills.title }}</h2>
+    <p class="lead mt-4 text-ink-soft">{{ t.skills.lead }}</p>
+
+    <div class="mt-10 flex flex-wrap gap-2" role="group" aria-label="{{ t.skills.solo }}">
+      <button class="key key-small" type="button" data-solo="" aria-pressed="true"><span class="lamp" data-bus="data"></span>{{ t.skills.all }}</button>
+      {% for project in projects %}
+      <button class="key key-small" type="button" data-solo="{{ project.slug }}" aria-pressed="false">
+        <span class="lamp" data-bus="data"></span><span class="tabular text-ink-soft">{{ project.code }}</span>{{ project.name }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <div class="matrix mt-10" data-matrix data-reveal="lamps" style="--cols: {{ projects|length }}">
+      {% for group in matrix %}
+      <div data-bus="{{ group.bus }}">
+        <div class="mx-head">
+          <h3 class="legend flex items-center gap-2"><span class="lamp" data-on="true"></span>{{ group.label }}</h3>
+          {% for project in projects %}<abbr class="mx-code no-underline" title="{{ project.name }}" data-col="{{ project.slug }}" aria-hidden="true">{{ project.code }}</abbr>{% endfor %}
+        </div>
+        <ul>
+          {% for row in group.rows %}
+          <li class="mx-row" data-uses="{{ row.uses }}" style="--row: {{ forloop.counter0 }}">
+            <span class="mx-label">{{ row.label }}<span class="sr-only">: {{ row.summary }} ({{ row.names }})</span></span>
+            {% for cell in row.cells %}<span class="mx-cell" data-col="{{ cell.slug }}" data-on="{{ cell.on|yesno:'true,false' }}" style="--col: {{ forloop.counter0 }}" aria-hidden="true"></span>{% endfor %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

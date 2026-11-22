@@ -449,6 +449,13 @@ TRACKS: tuple[Track, ...] = (
 # --- Author ----------------------------------------------------------------------------
 
 AUTHOR_NAME = "Gabriel Accioly"
+# How the author signs online (linkedin.com/in/oaccioly, github.com/o-accioly).
+AUTHOR_ALIAS = "oAccioly"
+AUTHOR_LOCALITY = "Rio de Janeiro"
+AUTHOR_COUNTRY = "BR"
+AUTHOR_SCHOOL = "Cruzeiro do Sul Virtual"
+# Last time the site's facts or copy changed: the sitemap's lastmod.
+SITE_UPDATED = date(2026, 11, 21)
 # The author's company, which hosts the site. Registration data as published on diapasao.com.
 BRAND_NAME = "oAccioly Faz"
 COMPANY_LEGAL_NAME = "OACCIOLY FAZ LTDA"

@@ -14,8 +14,18 @@ track and a single 3D device morphs between ultrawide, desktop, laptop, tablet a
   com texto alternativo. O print rola até o fim e o monitor "navega" para a próxima página do mesmo site.
 - **Faixas com medidores.** Cada produto é um canal da mesa: escadas de LED mostram quantas tecnologias
   dele estão em cada grupo, e o fader abre o projeto.
-- **Matriz de habilidades.** Cada linha é uma tecnologia e cada coluna um produto. Isolar um produto apaga
-  o que está fora da mixagem dele e coloca o produto no monitor.
+- **Páginas separadas.** Início (monitor, faixas, o que eu faço, processo), Projetos (cada produto com
+  problema, destaques, tecnologias e mockups de notebook e celular), uma página por projeto (com todas as
+  telas capturadas), Sobre (história, trajetória, empresa e perguntas frequentes) e Tecnologias (o porquê de
+  cada grupo e a matriz de habilidades).
+- **Matriz de habilidades.** Na página de Tecnologias, cada linha é uma tecnologia e cada coluna um produto.
+  Isolar um produto apaga o que está fora da mixagem dele.
+- **SEO e leitura por IA.** Título, descrição, canonical, `hreflang` (com `x-default`), Open Graph com
+  imagem por página e JSON-LD em todas as páginas (`Person`, `Organization`, `WebSite`, `ProfilePage`,
+  `FAQPage`, `BreadcrumbList`, `CreativeWork` por projeto), todos ligados pelo mesmo `@id`, para que
+  "Gabriel Accioly", "oAccioly" e "oAccioly Faz" apontem para a mesma pessoa e a mesma empresa. O
+  `robots.txt` libera buscadores e assistentes de IA, o `sitemap.xml` lista as páginas nos três idiomas e
+  `/llms.txt` e `/llms-full.txt` resumem o site em texto puro para modelos de linguagem.
 - **Idioma automático.** `/` redireciona para `/pt-br/`, `/en/` ou `/es/` conforme o `Accept-Language` do
   navegador (`LocaleMiddleware` + `i18n_patterns`). Quem não pede nenhum dos três recebe inglês.
 - **Tema automático.** Claro ou escuro pelo sistema, com `light-dark()` nos tokens; o interruptor "Luz do
@@ -50,8 +60,9 @@ O último comando baixa a CLI do Tailwind na primeira vez, recompila o CSS a cad
 .venv/bin/python manage.py test portfolio
 ```
 
-Os testes cobrem a detecção de idioma, as páginas nos três idiomas e a igualdade de estrutura entre os
-arquivos de texto.
+Os testes cobrem a detecção de idioma, as páginas nos três idiomas, a igualdade de estrutura entre os
+arquivos de texto e os metadados de busca (título único, JSON-LD, `hreflang`, `robots.txt`, sitemap e
+`llms.txt`).
 
 ## Estrutura
 
@@ -61,11 +72,16 @@ arquivos de texto.
 | `portfolio/catalog.py` | Fatos sem idioma: projetos, tecnologias, dispositivos, linha do tempo |
 | `portfolio/content/` | Texto em português (origem), inglês e espanhol, com a mesma estrutura |
 | `portfolio/shots.py` | Leitura do manifesto dos prints e cálculo da rolagem dentro do dispositivo |
-| `portfolio/templates/` | Home, página de projeto e o monitor |
+| `portfolio/seo.py` | JSON-LD (pessoa, empresa, site, páginas, projetos) e imagens de compartilhamento |
+| `portfolio/og.py` | Fonte das imagens de compartilhamento, servida só em desenvolvimento |
+| `portfolio/templates/` | Início, Projetos, projeto, Sobre, Tecnologias, o monitor e o par notebook + celular |
+| `templates/` | Base, 404, `robots.txt`, `llms.txt` e o cartão de compartilhamento |
 | `theme/app.css` | Tokens, tipografia e as peças da mesa (entrada do Tailwind) |
 | `static/js/` | Módulos ES: monitor, matriz, luz, revelações e o tom de 440 Hz |
 | `static/shots/` | Prints dos produtos e `manifest.json` |
+| `static/og/` | Imagens de compartilhamento (1200 × 630) e o logo quadrado, geradas por script |
 | `scripts/capture.py` | Captura as páginas públicas em cinco tamanhos de tela |
+| `scripts/og_images.py` | Gera as imagens de `static/og/` a partir dos templates e dos prints |
 
 ## Prints
 
@@ -99,6 +115,17 @@ Depois, regenere o manifesto.
 ```bash
 .venv/bin/python scripts/capture.py --manifest
 ```
+
+## Imagens de compartilhamento
+
+Os cartões de Open Graph saem dos mesmos templates, tokens e prints do site. Com o servidor de
+desenvolvimento no ar (`DJANGO_DEBUG=1`), rode:
+
+```bash
+.venv/bin/python scripts/og_images.py
+```
+
+Refaça depois de trocar a capa de um projeto, o texto da primeira tela ou a lista de projetos.
 
 ## Publicar
 

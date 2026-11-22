@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load console %}
+
+{% block content %}
+<section class="band pt-8! pb-12!" aria-labelledby="projects-title">
+  <div class="band-inner">
+    <nav class="crumbs legend" aria-label="{{ t.nav.breadcrumb }}">
+      <ol>
+        <li><a class="nav-link" href="{% url 'portfolio:home' %}">{{ t.nav.home }}</a></li>
+        <li><span aria-current="page">{{ t.nav.projects }}</span></li>
+      </ol>
+    </nav>
+    <h1 class="display-1 mt-8" id="projects-title" style="--chars: 14">{{ t.projects.page_title }}</h1>
+    <p class="lead mt-6 text-ink-soft">{{ page_lead }}</p>
+    <ul class="mt-10 flex flex-wrap gap-2" aria-label="{{ t.nav.projects }}">
+      {% for project in projects %}
+      <li><a class="key key-small" href="#{{ project.slug }}"><span class="tabular text-ink-soft">{{ project.code }}</span>{{ project.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<div class="catalog">
+  {% for project in projects %}
+  <article class="entry" id="{{ project.slug }}" aria-labelledby="entry-{{ project.slug }}">
+    <div class="band-inner entry-grid">
+      <a class="entry-shot" href="{{ project.href }}" tabindex="-1" aria-hidden="true">
+        {% include "portfolio/_pair.html" with large=project.large large_device=project.large.device phone=project.phone alt="" %}
+      </a>
+      <div class="entry-text">
+        <h2 id="entry-{{ project.slug }}"><a class="tape entry-name" href="{{ project.href }}" style="--tape-turn: {% cycle '-1deg' '0.7deg' '-0.5deg' '1deg' %}">{{ project.name }}</a></h2>
+        <p class="display-3 mt-6">{{ project.text.tagline }}</p>
+        <p class="legend mt-3 leading-relaxed text-ink-soft">{{ project.text.kind }} · {{ project.text.role }}{% if project.since %} · {{ project.since }}{% endif %}</p>
+        <p class="mt-4 text-ink-soft">{{ project.text.problem }}</p>
+        <ul class="highlights mt-5">
+          {% for line in project.highlights|slice:":3" %}<li>{{ line }}</li>{% endfor %}
+        </ul>
+        <div class="meters mt-6" aria-hidden="true">
+          {% for meter in project.meters %}
+          <span class="meter" data-bus="{{ meter.bus }}" title="{{ meter.label }}: {{ meter.count }}">{% for on in meter.cells %}<i data-on="{{ on|yesno:'true,false' }}"></i>{% endfor %}</span>
+          {% endfor %}
+        </div>
+        <p class="mt-3 text-sm text-ink-soft"><span class="sr-only">{{ t.projects.stack }}: </span>{{ project.stack|join:" · " }}</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a class="key key-primary" href="{{ project.href }}">{{ t.projects.open }}<span class="sr-only">: {{ project.name }}</span>{% icon "arrow-right" 16 %}</a>
+          {% if project.url %}<a class="key" href="{{ project.url }}" rel="noopener">{{ t.projects.live }}<span class="sr-only">: {{ project.host }}</span>{% icon "arrow-up-right" 16 %}</a>{% endif %}
+          {% if project.repo %}<a class="key" href="{{ project.repo }}" rel="noopener">{% icon "github" 16 %}{{ t.projects.repo }}</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

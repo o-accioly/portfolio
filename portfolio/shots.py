@@ -42,6 +42,12 @@ class Shot:
     def duration_css(self) -> str:
         return f"{self.duration}s"
 
+    @property
+    def ratio_css(self) -> str:
+        """The capture's viewport as a CSS aspect ratio."""
+        device = DEVICE_BY_KEY[self.device]
+        return f"{device.width} / {device.height}"
+
     def as_json(self) -> dict[str, str | float]:
         return {"src": self.full, "pan": self.pan, "dur": self.duration}
 
